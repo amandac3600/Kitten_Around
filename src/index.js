@@ -15,7 +15,7 @@ window.onload = function() {
 
   let borders = [];
   borders.push(new Border(0, 620, 600, 100, 1));
-  borders.push(new Border(600, 520, 100, 100, 2));
+  borders.push(new Border(600, 520, 100, 50, 2));
 
 
   function draw() {
