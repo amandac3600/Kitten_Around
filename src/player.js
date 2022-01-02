@@ -1,0 +1,87 @@
+let upKey, rightKey, downKey, leftKey;
+
+function Player(x, y) {
+  this.x = x;
+  this.y = y;
+  this.xvel = 0;
+  this.yvel = 0;
+  this.friction = 0.6;
+  this.maxVel = 5;
+  this.width = 100;
+  this.height = 50;
+  this.active = true;
+
+  this.step = function() {
+
+    //horiz mvmt
+    if (this.active) {
+      if (!leftKey && !rightKey || leftKey && rightKey) {
+        this.xvel *= this.friction;
+      } else if (rightKey) {
+        this.xvel ++;
+      } else if (leftKey) {
+        this.xvel --;
+      }
+      this.x += this.xvel;
+      this.y += this.yvel;
+    }
+
+    //vert mvmt
+    if (upKey) {
+      //check if on ground
+      this.yvel -= 15;
+    }
+    this.yvel += 2; //gravity
+
+    //adjust vel
+    if (this.xvel > this.maxVel) {
+      this.xvel = this.maxVel;
+    } else if (this.xvel < -this.maxVel) {
+      this.xvel = -this.maxVel;
+    }
+    if (this.yvel > this.maxVel) {
+      this.yvel = this.maxVel;
+    } else if (this.yvel < -this.maxVel) {
+      this.yvel = -this.maxVel;
+    }
+    this.x += this.xvel;
+    this.y += this.yvel;
+  }
+
+
+  this.draw = function(ctx) {
+    ctx.fillStyle = "blue";
+    ctx.fillRect(this.x, this.y, this.width, this.height);
+  }
+
+  this.setupInputs = function() {
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "w" || event.key === "ArrowUp") {
+        upKey = true;
+      } else if (event.key === "a" || event.key === "ArrowLeft") {
+        leftKey = true;
+      } else if (event.key === "s" || event.key === "ArrowDown") {
+        downKey = true;
+      } else if (event.key === "d" || event.key === "ArrowRight") {
+        rightKey = true;
+      }
+    });
+    
+    document.addEventListener("keyup", function(event) {
+      if (event.key === "w" || event.key === "ArrowUp") {
+        upKey = false;
+      } else if (event.key === "a" || event.key === "ArrowLeft") {
+        leftKey = false;
+      } else if (event.key === "s" || event.key === "ArrowDown") {
+        downKey = false;
+      } else if (event.key === "d" || event.key === "ArrowRight") {
+        rightKey = false;
+      }
+    });
+  }
+}
+
+
+
+module.exports = Player;
+// export default Player;
