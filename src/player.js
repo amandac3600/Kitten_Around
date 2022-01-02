@@ -1,16 +1,20 @@
-
 let upKey, rightKey, downKey, leftKey;
 
-function Player(x, y, color) {
+function Player(x, y, color, type) {
   this.x = x;
   this.y = y;
   this.color = color;
+  this.type = type;
+  if (type == "image") {
+    this.image = new Image();
+    this.image.src = color;
+  }
   this.xvel = 0;
   this.yvel = 0;
   this.friction = 0.6;
   this.maxVel = 5;
-  this.width = 100;
-  this.height = 50;
+  this.width = 150;
+  this.height = 75;
   this.active = true;
 
   this.step = function() {
@@ -31,9 +35,12 @@ function Player(x, y, color) {
     //vert mvmt
     if (upKey) {
       //check if on ground
-      this.yvel -= 15;
+      this.yvel -= 10;
     }
-    this.yvel += 2; //gravity
+    if (downKey) {
+      this.yvel += 10;
+    }
+    // this.yvel += 2; //gravity
 
     //adjust vel
     if (this.xvel > this.maxVel) {
@@ -46,6 +53,7 @@ function Player(x, y, color) {
     } else if (this.yvel < -this.maxVel) {
       this.yvel = -this.maxVel;
     }
+    
 
     if (this.xvel > 0) {
       this.xvel = Math.floor(this.xvel);
@@ -64,8 +72,12 @@ function Player(x, y, color) {
 
 
   this.draw = function(ctx) {
-    ctx.fillStyle = `${this.color}`;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+    if (type === "image") {
+      ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    } else {
+      ctx.fillStyle = `${this.color}`;
+      ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
   }
 
   this.setupInputs = function() {
