@@ -1,8 +1,10 @@
+
 let upKey, rightKey, downKey, leftKey;
 
-function Player(x, y) {
+function Player(x, y, color) {
   this.x = x;
   this.y = y;
+  this.color = color;
   this.xvel = 0;
   this.yvel = 0;
   this.friction = 0.6;
@@ -44,13 +46,25 @@ function Player(x, y) {
     } else if (this.yvel < -this.maxVel) {
       this.yvel = -this.maxVel;
     }
+
+    if (this.xvel > 0) {
+      this.xvel = Math.floor(this.xvel);
+    } else {
+      this.xvel = Math.ceil(this.xvel);
+    }
+    if (this.yvel > 0) {
+      this.yvel = Math.floor(this.yvel);
+    } else {
+      this.yvel = Math.ceil(this.yvel);
+    }
+
     this.x += this.xvel;
     this.y += this.yvel;
   }
 
 
   this.draw = function(ctx) {
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = `${this.color}`;
     ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 
