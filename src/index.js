@@ -80,8 +80,6 @@ window.onload = function() {
 
   function checkCollision(player, r2) {
     let crash = true;
-    console.log(player);
-    console.log(r2);
     if (player.x >= r2.x + r2.width) {
       crash = false;
     } else if (player.x + player.width <= r2.x) {

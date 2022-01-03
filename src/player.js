@@ -37,10 +37,10 @@ function Player(x, y, color, type) {
       //check if on ground
       this.yvel -= 10;
     }
-    if (downKey) {
-      this.yvel += 10;
-    }
-    // this.yvel += 2; //gravity
+    // if (downKey && this.yvel != 0) {
+    //   this.yvel += 10;
+    // }
+    this.yvel += 2; //gravity
 
     //adjust vel
     if (this.xvel > this.maxVel) {
