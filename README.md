@@ -2,23 +2,22 @@
 
 Play here!: (link to be inserted later)
 
-Kittin' Around is a 2D web-based platform game where you will be playing as a hungry cat, Bobo.  In order to feed Bobo, you have to navigate her to the fish at the end of the pond. There will be platforms for Bobo to jump on and around, as well as enemy mice that Bobo can kill by jumping on them.  There will also be catnip placed around the map that will grant Bobo temporary invulnerability to the enemy mice.  The game ends when Bobo gets her fish or when she touches a mouse.
+Kittin' Around is a 2D web-based platform game where you will be playing as a hungry cat, Bobo.  In order to feed Bobo, you have to navigate her to the fish at the end of the pond. There will be platforms for Bobo to jump on and around, as well as enemy mice for Bobo to avoid.  The game ends when Bobo gets her fish or when she touches a mouse.
 
-<!-- # Instructions
+# Instructions
 
 Your goal is to get Bobo to the finish line at the end of the map, which will be designated by a fish.  
-Bobo hates water, so you must make sure to avoid falling into the pond on the way.  On the path, there will be enemy mice for Bobo to avoid; but if Bobo eats some catnip, she will become invulnerable to mice.
+Bobo hates water, so you must make sure to avoid falling into the pond on the way.  On the path, there will be enemy mice for Bobo to avoid.
 
-Using the left and right arrow keys to move and the space bar to jump, get the hungry Bobo to the fish as fast as possible! -->
+Using the left and right arrow keys to move and the up arrow key to jump, get the hungry Bobo to the fish as fast as possible!
 
 # Functionality & MVP
 
 In Kitten' Around, users will be able to:
 
 * Start, pause, and reset the game
-* Use arrow keys to move the character left and right
-* Use the space bar to have the character jump
-* Jump on enemies to make them disappear
+* Use left/right arrow keys to move the character left and right
+* Use the up arrow key to have the character jump
 * Toggle on and off the background music
 
 In addition, this project will include:
@@ -26,19 +25,13 @@ In addition, this project will include:
 * An instructions tab for users to click on
 * A production README
 
-INSTRUCTIONS:
-Your goal is to get Bobo to the finish line at the end of the map, which will be designated by a fish.  
-Bobo hates water, so you must make sure to avoid falling into the pond on the way.  On the path, there will be enemy mice for Bobo to avoid; but if Bobo eats some catnip, she will become invulnerable to mice (will add if time allows).
-
-Using the left and right arrow keys to move and the space bar to jump, get the hungry Bobo to the fish as fast as possible!
-
 # Wireframes
 
 <img width="1024" src="/images/Homepage.png">
 
 * Game controls on the right include New Game and Pause Game buttons
 * There will be a button at the top to see the game's instructions and a button to mute and unmute the game's music
-* Nav links at the bottom include links to this game's GitHub repository and my LinkedIn profile
+* Nav links at the bottom include links to this game's GitHub repository and the creator's LinkedIn profile
 
 # Technologies
 
@@ -58,6 +51,7 @@ Using the left and right arrow keys to move and the space bar to jump, get the h
 # Bonus Features
 * Tracker for high score
 * Add feature for double jump
+* Ability to kill enemies
 * Give the character an action to attack
 * Manually pick up powerups
 * Add multiple map versions to cycle through
