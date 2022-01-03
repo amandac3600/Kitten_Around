@@ -7,7 +7,7 @@ window.onload = function() {
   let ctx = canvas.getContext("2d");
   let img = document.getElementById("image");
 
-  let player = new Player(100, 100, `./images/resizecat.png`, "image");
+  let player = new Player(400, 200, `./images/resizecat.png`, "image");
   
   let gameLoop = setInterval(step, 30);  //30 fps
 
@@ -57,22 +57,26 @@ window.onload = function() {
         // while(checkCollision(horizontalRect, borderRect)) {
         //   horizontalRect.x -= Math.sign(player.xvel);
         // }
-        if (player.x + player.width > borderRect.x) {
+        if (player.x + player.width > borderRect.x && player.y + player.height < borderRect.y) {
           player.x = borderRect.x - player.width;
+          player.y = 0;
+          console.log(player.y);
         }
         
         // player.x = horizontalRect.x;
-        player.xvel = 0;
+        // player.xvel = 20;
       }
       if(checkCollision(verticalRect, borderRect)) {
         // while(checkCollision(verticalRect, borderRect)) {
         //   verticalRect.y -= Math.sign(player.yvel);
         // }
         if (player.y + player.height > borderRect.y) {
-          player.y = borderRect.y - player.height;
+          player.y = borderRect.y - player.height - 6;
+          
+          console.log(borderRect);
         }
         // player.y = verticalRect.y;
-        player.yvel = 0;
+        // player.yvel = 20;
         
       }  
     });
