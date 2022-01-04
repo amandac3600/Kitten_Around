@@ -12,6 +12,7 @@ function Player(x, y) {
   this.width = 150;
   this.height = 75;
   this.active = true;
+  this.jumping = false;
 
   this.step = function() {
 
@@ -31,8 +32,10 @@ function Player(x, y) {
     }
 
     //vert mvmt
-    if (upKey) {
-      //check if on ground
+    if (upKey && !this.jumping) {
+      // setTimeout(function() {
+      //   this.yvel -= 10;
+      // }, 1);
       this.yvel -= 10;
     }
     // if (downKey && this.yvel != 0) {
@@ -76,12 +79,16 @@ function Player(x, y) {
   this.setupInputs = function() {
     document.addEventListener("keydown", function(event) {
       if (event.key === "w" || event.key === "ArrowUp") {
+        event.preventDefault();
         upKey = true;
       } else if (event.key === "a" || event.key === "ArrowLeft") {
+        event.preventDefault();
         leftKey = true;
       } else if (event.key === "s" || event.key === "ArrowDown") {
+        event.preventDefault();
         downKey = true;
       } else if (event.key === "d" || event.key === "ArrowRight") {
+        event.preventDefault();
         rightKey = true;
       }
     });

@@ -86,6 +86,7 @@ window.onload = function() {
     if (player.x < 0) {
       player.x = 0;
     } 
+  
 
     borders.forEach (border => {
       let borderRect = {
