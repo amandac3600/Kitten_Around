@@ -12,6 +12,7 @@ function Player(x, y) {
   this.width = 150;
   this.height = 75;
   this.active = true;
+  this.borders = [];
 
   this.step = function() {
 
@@ -31,18 +32,31 @@ function Player(x, y) {
     }
 
     //vert mvmt
-    if (upKey) {
+    let logs = [];
+    this.borders.forEach (border => {
+      if (border.type === "log") logs.push(border);
+    })
 
-      let count = 0;
-      if (count < 2) {
-        this.yvel -= 10;
+    logs.forEach (border => {
+      let borderRect = {
+        x: border.x,
+        y: border.y,
+        width: border.width,
+        height: border.height
       }
+      if (upKey && this.y + this.height === borderRect.y && (this.x + this.width/2 > borderRect.x && this.x + this.width/2 < borderRect.x + borderRect.width)) {
+        console.log(this.y + this.height);
+        console.log(borderRect.y)
+        this.yvel -= 20;
+      } 
+    } )
+      
 
       // this.y -= 10;
-    }
+
 
     //gravity
-    this.yvel += 4;
+    this.yvel += 1;
 
     //adjust vel
     if (this.xvel > this.maxVel) {
@@ -52,9 +66,10 @@ function Player(x, y) {
     }
     if (this.yvel > this.maxVel) {
       this.yvel = this.maxVel;
-    } else if (this.yvel < -this.maxVel) {
-      this.yvel = -this.maxVel;
-    }
+    } 
+    // if (this.yvel < -this.maxVel) {
+    //   this.yvel = -this.maxVel;
+    // }
     
 
     if (this.xvel > 0) {

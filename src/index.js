@@ -16,7 +16,6 @@ window.onload = function() {
   let catSound = new Sound("./sounds/cat_pain.wav");
   let waterSound = new Sound("./sounds/water.wav");
   let mouseSound = new Sound("./sounds/mouse.mp3");
-  backgroundSound.play();
   
   let gameLoop = setInterval(step, 30);  //30 fps
 
@@ -43,6 +42,7 @@ window.onload = function() {
   borders.push(new Border(0, 680, 1282, 100, "water"));
   borders.push(new Border(1278, 680, 1282, 100, "water"));
   borders.push(new Border(2556, 680, 1282, 100, "water"));
+  player.borders = borders;
 
 
   let mice = [];
@@ -251,4 +251,5 @@ window.onload = function() {
     let message = document.getElementById("win");
     message.classList.add("enable");
   }
+  backgroundSound.play();
 }
