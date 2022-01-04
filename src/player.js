@@ -1,14 +1,10 @@
 let upKey, rightKey, downKey, leftKey;
 
-function Player(x, y, color, type) {
+function Player(x, y) {
   this.x = x;
   this.y = y;
-  this.color = color;
-  this.type = type;
-  if (type == "image") {
-    this.image = new Image();
-    this.image.src = color;
-  }
+  this.image = new Image();
+  this.image.src = `./images/resizecat.png`;
   this.xvel = 0;
   this.yvel = 0;
   this.friction = 0.6;
@@ -24,8 +20,10 @@ function Player(x, y, color, type) {
       if (!leftKey && !rightKey || leftKey && rightKey) {
         this.xvel *= this.friction;
       } else if (rightKey) {
+        this.image.src = `./images/resizecat.png`;
         this.xvel ++;
       } else if (leftKey) {
+        this.image.src = `./images/back.png`;
         this.xvel --;
       }
       this.x += this.xvel;
@@ -72,12 +70,7 @@ function Player(x, y, color, type) {
 
 
   this.draw = function(ctx) {
-    if (type === "image") {
-      ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-    } else {
-      ctx.fillStyle = `${this.color}`;
-      ctx.fillRect(this.x, this.y, this.width, this.height);
-    }
+    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
 
   this.setupInputs = function() {

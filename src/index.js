@@ -1,5 +1,6 @@
 const Player = require("./player.js");
 const Border = require("./border.js");
+const Mouse = require("./mouse.js");
 
 
 window.onload = function() {
@@ -7,31 +8,51 @@ window.onload = function() {
   let ctx = canvas.getContext("2d");
   let img = document.getElementById("image");
 
-  let player = new Player(400, 200, `./images/resizecat.png`, "image");
+  let player = new Player(400, 200);
   
   let gameLoop = setInterval(step, 30);  //30 fps
 
   player.setupInputs();
 
   let borders = [];
-  borders.push(new Border(0, 620, 600, 100, 1));
+  borders.push(new Border(0, 620, 600, 100, 2));
   borders.push(new Border(600, 520, 100, 50, 2));
+  borders.push(new Border(700, 620, 300, 100, 2));
+  borders.push(new Border(900, 420, 300, 100, 2));
+
+  let mice = [];
+  mice.push(new Mouse(600, 590));
+  mice.push(new Mouse(900, 590));
 
 
   function draw() {
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);  //clear the canvas before redrawing
 
-    ctx.drawImage(img, 0, 0)
+    ctx.drawImage(img, 0, 0);
+    ctx.drawImage(img, 1280, 0);
+
+    if (player.xvel > 0) {
+      ctx.translate(-player.xvel - 5, 0);
+    } else if (player.xvel < 0) {
+      ctx.translate(-player.xvel + 5, 0);
+    }
     player.draw(ctx);   //redraw the player at the new pos
 
     borders.forEach(border => {
       border.draw(ctx);
     })
+    mice.forEach(mouse => {
+      mouse.draw(ctx);
+    })
   }
 
   function step() {  //main step function for things other than the player (like the mice)
     player.step();
+    mice.forEach(mouse => {
+      mouse.step();
+    })
+
     draw();     //redraw canvas once everything has been updated
     borders.forEach (border => {
       let borderRect = {
@@ -60,7 +81,6 @@ window.onload = function() {
         if (player.x + player.width > borderRect.x && player.y + player.height < borderRect.y) {
           player.x = borderRect.x - player.width;
           player.y = 0;
-          console.log(player.y);
         }
         
         // player.x = horizontalRect.x;
@@ -72,8 +92,8 @@ window.onload = function() {
         // }
         if (player.y + player.height > borderRect.y) {
           player.y = borderRect.y - player.height - 6;
-          
-          console.log(borderRect);
+        } else if (player.y < borderRect.y + borderRect.height) {
+          player.y = borderRect.y + borderRect.height + 5;
         }
         // player.y = verticalRect.y;
         // player.yvel = 20;
