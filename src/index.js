@@ -123,7 +123,7 @@ window.onload = function() {
       }
       if(checkCollision(horizontalRect, mouseRect)) {
         if (player.x + player.width > mouseRect.x && player.y + player.height < mouseRect.y) {
-
+          displayGameOver();
         }
         
         // player.x = horizontalRect.x;
@@ -131,9 +131,9 @@ window.onload = function() {
       }
       if(checkCollision(verticalRect, mouseRect)) {
         if (player.y + player.height > mouseRect.y) {
-
+          displayGameOver();
         } else if (player.y < mouseRect.y + mouseRect.height) {
-
+          displayGameOver();
         }
         // player.y = verticalRect.y;
         // player.yvel = 20;
@@ -156,45 +156,30 @@ window.onload = function() {
     return crash;
   }
 
-  //horizontal collision rect
-  // let horizontalRect = {
-  //   x: player.x + player.xvel,
-  //   y: player.y,
-  //   width: player.width,
-  //   height: player.height
-  // }
-  // //vert collision rect
-  // let verticalRect = {
-  //   x: player.x,
-  //   y: player.y + player.yvel,
-  //   width: player.width,
-  //   height: player.height
-  // }
+  function createGameOver() {
+    let newCanvas = document.createElement('div');
+    let gameOverMessage = document.createElement('form');
+    let text = document.createElement('p');
+    let button = document.createElement('button');
+    gameOverMessage.appendChild(text);
+    gameOverMessage.appendChild(button);
+    gameOverMessage.classList.add("ggmessage");
+    gameOverMessage.setAttribute("id", "gg");
+    newCanvas.classList.add("ggcan");
+    newCanvas.setAttribute("id", "ggcan")
+    text.innerHTML = 'Game Over';
+    button.innerText = 'New Game';
+    // console.log(gameOverMessage);
+  }
 
-  // borders.forEach (border => {
-  //   let borderRect = {
-  //     x: border.x,
-  //     y: border.y,
-  //     width: border.width,
-  //     height: border.height
-  //   }
-  //   console.log(checkCollision(horizontalRect,borderRect));
-  //   console.log(verticalRect)
-  //   if(checkCollision(horizontalRect, borderRect)) {
-  //     // while(checkCollision(horizontalRect, borderRect)) {
-  //     //   horizontalRect.x -= Math.sign(player.xvel);
-  //     // }
-  //     player.x = horizontalRect.x;
-  //     player.xvel = 0;
-  //   }
-  //   console.log(checkCollision(verticalRect,borderRect));
-  //   if(checkCollision(verticalRect,borderRect)) {
-  //     // while(checkCollision(verticalRect, borderRect)) {
-  //     //   verticalRect.y -= Math.sign(player.yvel);
-  //     // }
-  //     player.y = verticalRect.y;
-  //     player.yvel = 0;
-  //   }
-  // })
+  function displayGameOver() {
+    createGameOver();
+
+    let message = document.getElementById("gg");
+    let displayCanvas = document.getElementById("ggcan");
+    console.log(message);
+    message.classList.add("enable");
+    displayCanvas.classList.add("enable");
+  }
 
 }

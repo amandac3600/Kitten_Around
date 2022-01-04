@@ -80,3 +80,7 @@ a:last-child {
   top: 2px;
   left: 20px;
 }
+
+.enable {
+  display: block !important;
+}

@@ -12,7 +12,6 @@ function Player(x, y) {
   this.width = 150;
   this.height = 75;
   this.active = true;
-  this.jumping = false;
 
   this.step = function() {
 
@@ -32,11 +31,11 @@ function Player(x, y) {
     }
 
     //vert mvmt
-    if (upKey && !this.jumping) {
+    if (upKey) {
       // setTimeout(function() {
-      //   this.yvel -= 10;
-      // }, 1);
-      this.yvel -= 10;
+        this.y -= 20;
+      // }, 0);
+      // this.yvel -= 10;
     }
     // if (downKey && this.yvel != 0) {
     //   this.yvel += 10;
