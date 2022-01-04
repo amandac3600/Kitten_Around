@@ -4,14 +4,17 @@ function Border(x, y, width, height, type) {
   this.width = width;
   this.height = height;
   this.type = type;
+  this.image = new Image();
 
   this.draw = function(ctx) {
-    if (this.type === 1) {
-      ctx.fillStyle = "lightblue";
-    } else if (this.type === 2) {
-      ctx.fillStyle = "tan";
+    if (this.type === "water") {
+      this.image.src = `./images/water.png`;
+    } else if (this.type === "log") {
+      this.image.src = `./images/log.png`;
+    } else if (this.type === "fish") {
+      this.image.src = `./images/fish.png`;
     }
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
 }
 

@@ -8,7 +8,7 @@ function Player(x, y) {
   this.xvel = 0;
   this.yvel = 0;
   this.friction = 0.6;
-  this.maxVel = 4;
+  this.maxVel = 5;
   this.width = 150;
   this.height = 75;
   this.active = true;
@@ -32,15 +32,17 @@ function Player(x, y) {
 
     //vert mvmt
     if (upKey) {
-      // setTimeout(function() {
-        this.y -= 20;
-      // }, 0);
-      // this.yvel -= 10;
+
+      let count = 0;
+      if (count < 2) {
+        this.yvel -= 10;
+      }
+
+      // this.y -= 10;
     }
-    // if (downKey && this.yvel != 0) {
-    //   this.yvel += 10;
-    // }
-    this.yvel += 4; //gravity
+
+    //gravity
+    this.yvel += 4;
 
     //adjust vel
     if (this.xvel > this.maxVel) {
