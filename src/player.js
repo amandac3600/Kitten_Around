@@ -8,7 +8,7 @@ function Player(x, y) {
   this.xvel = 0;
   this.yvel = 0;
   this.friction = 0.6;
-  this.maxVel = 5;
+  this.maxVel = 4;
   this.width = 150;
   this.height = 75;
   this.active = true;
@@ -38,7 +38,7 @@ function Player(x, y) {
     // if (downKey && this.yvel != 0) {
     //   this.yvel += 10;
     // }
-    this.yvel += 2; //gravity
+    this.yvel += 4; //gravity
 
     //adjust vel
     if (this.xvel > this.maxVel) {

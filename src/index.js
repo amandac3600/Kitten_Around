@@ -15,10 +15,22 @@ window.onload = function() {
   player.setupInputs();
 
   let borders = [];
-  borders.push(new Border(0, 620, 600, 100, 2));
-  borders.push(new Border(600, 520, 100, 50, 2));
-  borders.push(new Border(700, 620, 300, 100, 2));
-  borders.push(new Border(900, 420, 300, 100, 2));
+  borders.push(new Border(0, 620, 600, 25, 2));
+  borders.push(new Border(620, 520, 100, 25, 2));
+  borders.push(new Border(740, 420, 300, 25, 2));
+  borders.push(new Border(840, 320, 150, 25, 2));
+  borders.push(new Border(1140, 320, 150, 25, 2));
+  borders.push(new Border(1350, 220, 200, 25, 2));
+  borders.push(new Border(1800, 620, 150, 25, 2));
+  borders.push(new Border(2050, 540, 200, 25, 2));
+  borders.push(new Border(2300, 640, 150, 25, 2));
+  borders.push(new Border(2350, 440, 150, 25, 2));
+  borders.push(new Border(2550, 700, 150, 25, 2));
+  borders.push(new Border(2700, 600, 300, 25, 2));
+  borders.push(new Border(3050, 500, 150, 25, 2));
+  borders.push(new Border(3250, 380, 200, 25, 2));
+  borders.push(new Border(3500, 650, 400, 25, 2));
+
 
   let mice = [];
   mice.push(new Mouse(600, 590));
@@ -31,6 +43,8 @@ window.onload = function() {
 
     ctx.drawImage(img, 0, 0);
     ctx.drawImage(img, 1280, 0);
+    ctx.drawImage(img, 2560, 0);
+
 
     if (player.xvel > 0) {
       ctx.translate(-player.xvel - 5, 0);
@@ -53,7 +67,26 @@ window.onload = function() {
       mouse.step();
     })
 
+    let horizontalRect = {
+      x: player.x + player.xvel,
+      y: player.y,
+      width: player.width,
+      height: player.height
+    }
+    //vert collision rect
+    let verticalRect = {
+      x: player.x,
+      y: player.y + player.yvel,
+      width: player.width,
+      height: player.height
+    }
+
     draw();     //redraw canvas once everything has been updated
+
+    if (player.x < 0) {
+      player.x = 0;
+    } 
+
     borders.forEach (border => {
       let borderRect = {
         x: border.x,
@@ -61,39 +94,45 @@ window.onload = function() {
         width: border.width,
         height: border.height
       }
-      let horizontalRect = {
-        x: player.x + player.xvel,
-        y: player.y,
-        width: player.width,
-        height: player.height
-      }
-      //vert collision rect
-      let verticalRect = {
-        x: player.x,
-        y: player.y + player.yvel,
-        width: player.width,
-        height: player.height
-      }
       if(checkCollision(horizontalRect, borderRect)) {
-        // while(checkCollision(horizontalRect, borderRect)) {
-        //   horizontalRect.x -= Math.sign(player.xvel);
-        // }
         if (player.x + player.width > borderRect.x && player.y + player.height < borderRect.y) {
-          player.x = borderRect.x - player.width;
-          player.y = 0;
+          // player.x = borderRect.x - player.width;
+          player.x = player.x;
+        }
+        
+      }
+      if(checkCollision(verticalRect, borderRect)) {
+        if (player.y + player.height > borderRect.y) {
+          player.y = borderRect.y - player.height - 6;
+        } 
+        else if (player.y < borderRect.y + borderRect.height) {
+          // player.y = borderRect.y + borderRect.height;
+          player.y = player.y;
+        }
+              
+      }  
+    });
+
+    mice.forEach (mouse => {
+      let mouseRect = {
+        x: mouse.x,
+        y: mouse.y,
+        width: mouse.width,
+        height: mouse.height
+      }
+      if(checkCollision(horizontalRect, mouseRect)) {
+        if (player.x + player.width > mouseRect.x && player.y + player.height < mouseRect.y) {
+
         }
         
         // player.x = horizontalRect.x;
         // player.xvel = 20;
       }
-      if(checkCollision(verticalRect, borderRect)) {
-        // while(checkCollision(verticalRect, borderRect)) {
-        //   verticalRect.y -= Math.sign(player.yvel);
-        // }
-        if (player.y + player.height > borderRect.y) {
-          player.y = borderRect.y - player.height - 6;
-        } else if (player.y < borderRect.y + borderRect.height) {
-          player.y = borderRect.y + borderRect.height + 5;
+      if(checkCollision(verticalRect, mouseRect)) {
+        if (player.y + player.height > mouseRect.y) {
+
+        } else if (player.y < mouseRect.y + mouseRect.height) {
+
         }
         // player.y = verticalRect.y;
         // player.yvel = 20;
