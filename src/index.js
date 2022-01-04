@@ -157,29 +157,23 @@ window.onload = function() {
   }
 
   function createGameOver() {
-    let newCanvas = document.createElement('div');
     let gameOverMessage = document.createElement('form');
     let text = document.createElement('p');
     let button = document.createElement('button');
+    let gg = document.getElementById("game-over");
+    gg.appendChild(gameOverMessage);
     gameOverMessage.appendChild(text);
     gameOverMessage.appendChild(button);
     gameOverMessage.classList.add("ggmessage");
     gameOverMessage.setAttribute("id", "gg");
-    newCanvas.classList.add("ggcan");
-    newCanvas.setAttribute("id", "ggcan")
     text.innerHTML = 'Game Over';
     button.innerText = 'New Game';
-    // console.log(gameOverMessage);
   }
 
   function displayGameOver() {
     createGameOver();
-
     let message = document.getElementById("gg");
-    let displayCanvas = document.getElementById("ggcan");
-    console.log(message);
     message.classList.add("enable");
-    displayCanvas.classList.add("enable");
   }
 
 }
