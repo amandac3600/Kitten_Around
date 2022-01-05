@@ -6,13 +6,16 @@ function Sound(src) {
   this.sound.setAttribute("controls", "none");
   this.sound.setAttribute("muted", "true");
   this.sound.style.display = "none";
+  this.playing = true;
   document.getElementById("sounds").appendChild(this.sound);
 
   this.play = function(){
+    this.playing = true;
     this.sound.play();
   }
 
   this.stop = function(){
+    this.playing = false;
     this.sound.pause();
   }
 }

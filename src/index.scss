@@ -115,7 +115,8 @@ a:last-child {
 
 #startscreen {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 48px;
+  font-size: 44px;
+  font-weight: 700;
   position: absolute;
   justify-content: center;
   width: 700px;
@@ -125,6 +126,14 @@ a:last-child {
   background-color: rgb(101, 143, 221);
   top: 30%;
   right: 30%;
+}
+
+#button {
+  position: relative;
+  font-size: 32px;
+  justify-content: center;
+  margin: auto;
+  top: 60%;
 }
 
 button {

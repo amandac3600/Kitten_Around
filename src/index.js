@@ -3,6 +3,7 @@ const Border = require("./border.js");
 const Mouse = require("./mouse.js");
 const Sound = require("./sound.js");
 
+let gameLoop;
 
 window.onload = function() {
   let startscreen = document.getElementById("startscreen");
@@ -11,7 +12,6 @@ window.onload = function() {
     startscreen.style.display = "none";
     startscreen.setAttribute("id", "hidden");
     backgroundSound.play();
-    backgroundSound.sound.volume = 0.05;
   }
   //gameloop
   button.addEventListener("click", hide);
@@ -21,6 +21,9 @@ window.onload = function() {
   if (!hiddenstart) {
     createstartScreen();
   }
+
+  let volume = document.getElementById("volume");
+  volume.addEventListener("click", toggleSound);
   
   let canvas = document.getElementById("canvas");
   let ctx = canvas.getContext("2d");
@@ -29,16 +32,16 @@ window.onload = function() {
   let player = new Player(500, 200);
 
   //sounds and music
-  let backgroundSound = new Sound("./sounds/bg.mp3");
+  let backgroundSound = new Sound("./sounds/background.mp3");
   let catSound = new Sound("./sounds/cat_pain.wav");
   let waterSound = new Sound("./sounds/water.wav");
   let mouseSound = new Sound("./sounds/mouse.mp3");
   
   function startGame () {
-    let gameLoop = setInterval(step, 30);  //30 fps
+    gameLoop = setInterval(step, 30);  //30 fps
+    player.setupInputs();
   }
 
-  player.setupInputs();
 
   let borders = [];
   borders.push(new Border(0, 620, 600, 25, "log"));
@@ -160,8 +163,10 @@ window.onload = function() {
         if (player.y + player.height > borderRect.y) {
           displayGameOver();
           gameOver();
-          catSound.play();
-          waterSound.play();
+          if (catSound.playing === true) {
+            catSound.play();
+            waterSound.play();
+          }
         } 
       } 
 
@@ -195,20 +200,27 @@ window.onload = function() {
         if (player.x + player.width > mouseRect.x && player.y + player.height < mouseRect.y) {
           displayGameOver();
           gameOver();
-          catSound.play();
-          mouseSound.play();
+          if (catSound.playing === true) {
+            catSound.play();
+            mouseSound.play();
+          }
         }
       }
       if(checkCollision(verticalRect, mouseRect)) {
         if (player.y + player.height > mouseRect.y) {
           displayGameOver();
           gameOver();
-          mouseSound.play();
+          if (catSound.playing === true) {
+            catSound.play();
+            mouseSound.play();
+          }
         } else if (player.y < mouseRect.y + mouseRect.height) {
           displayGameOver();
           gameOver();
-          catSound.play();
-          mouseSound.play();
+          if (catSound.playing === true) {
+            catSound.play();
+            mouseSound.play();
+          }
         }
       }  
     });
@@ -278,6 +290,16 @@ window.onload = function() {
     createVictoryMsg();
     let message = document.getElementById("win");
     message.classList.add("enable");
+  }
+
+  function toggleSound () {
+    if (backgroundSound.playing === true) {
+      backgroundSound.stop();
+      catSound.playing = false;
+    } else {
+      backgroundSound.play();
+      catSound.playing = true;
+    }
   }
   
 }
