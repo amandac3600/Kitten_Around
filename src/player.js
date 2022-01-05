@@ -62,10 +62,10 @@ function Player(x, y) {
         width: border.width,
         height: border.height
       }
-      if (upKey && this.y + this.height === borderRect.y && (this.x + this.width/2> borderRect.x && this.x + this.width/2 < borderRect.x + borderRect.width)) {
+      if (upKey && this.y + this.height === borderRect.y && (this.x + this.width/2 + 16 > borderRect.x && this.x + this.width/2 - 16 < borderRect.x + borderRect.width)) {
         framex = 0;
         framey = 1;
-        this.yvel -= 20;
+        this.yvel -= 22;
       } 
     } )
       

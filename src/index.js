@@ -157,20 +157,15 @@ window.onload = function() {
       }
       //check collision with logs
       if(checkCollision(horizontalRect, borderRect) && border.type === "log") {
-        if (player.x + player.width > borderRect.x && player.y + player.height< borderRect.y) {
-          // player.x = borderRect.x - player.width;
+        if (player.x + player.width > borderRect.x && player.y + player.height < borderRect.y) {
           player.x = player.x;
         }
         
       }
       if(checkCollision(verticalRect, borderRect) && border.type === "log") {
-        if (player.y - player.height + 180 < borderRect.y) {
+        if (player.y - player.height + 200 < borderRect.y) {
           player.y = borderRect.y - player.height - 5;
         } 
-        // else if (player.y < borderRect.y + borderRect.height) {
-        //   player.y = borderRect.y - borderRect.height;
-        //   // player.y = player.y;
-        // }
       }  
 
       //check collision with water
