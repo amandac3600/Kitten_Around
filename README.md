@@ -1,6 +1,6 @@
 # Welcome to Kitten' Around!
 
-Play here!: (link to be inserted later)
+Play here!: https://amandac3600.github.io/Kitten_Around/
 
 Kittin' Around is a 2D web-based platform game where you will be playing as a hungry cat, Bobo.  In order to feed Bobo, you have to navigate her to the fish at the end of the pond. There will be platforms for Bobo to jump on and around, as well as enemy mice for Bobo to avoid.  The game ends when Bobo gets her fish or when she touches water or a mouse.
 
