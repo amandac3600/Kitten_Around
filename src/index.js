@@ -24,6 +24,7 @@ window.onload = function() {
   //toggle mute and unmute
   let volume = document.getElementById("volume");
   volume.addEventListener("click", toggleSound);
+  console.log(volume);
 
   let newGame = document.getElementById("newgame");
   newGame.addEventListener("click", restart);
@@ -82,8 +83,10 @@ window.onload = function() {
 
 
   let mice = [];
-  mice.push(new Mouse(600, 590));
-  mice.push(new Mouse(900, 590));
+  let mouse1 = new Mouse(550, 595);
+  let mouse2 = new Mouse(900, 390);
+  mice.push(mouse1);
+  mice.push(mouse2);
 
   let fish = new Border(3670, 620, 100, 40, "fish");
   borders.push(fish);
@@ -105,7 +108,7 @@ window.onload = function() {
         ctx.translate(-player.xvel - 5, 0);
       }
     } else if (player.xvel < 0) {
-      if (player.x > 500 && player.x < 3000) {
+      if (player.x > 500 && player.x < 3200) {
         ctx.translate(-player.xvel + 5, 0);
       }
     }
@@ -123,9 +126,15 @@ window.onload = function() {
 
   function step() {  //main step function for things other than the player (like the mice)    
     player.step();
-    mice.forEach(mouse => {
-      mouse.step();
-    })
+    let num1;
+    // if (mouse1.x <= 10) {
+    //   num1 = 5;
+    //   mouse1.xvel = -num1 * -1;
+    // } else if (mouse1.x >= 550) {
+    //   num1 = -5;
+    //   mouse1.xvel = -num1 * -1;
+    // }
+    // mouse1.step(num1);
 
     let horizontalRect = {
       x: player.x + player.xvel,
@@ -163,7 +172,7 @@ window.onload = function() {
         
       }
       if(checkCollision(verticalRect, borderRect) && border.type === "log") {
-        if (player.y - player.height + 200 < borderRect.y) {
+        if (player.y - player.height + 200 < borderRect.y && player.x + player.width - 55 > borderRect.x) {
           player.y = borderRect.y - player.height - 5;
         } 
       }  
@@ -183,8 +192,7 @@ window.onload = function() {
 
       //check collision with fish
       if(checkCollision(horizontalRect, borderRect) && border.type === "fish") {
-        if (player.x + player.width > borderRect.x && player.y + player.height < borderRect.y) {
-          // player.x = borderRect.x - player.width;
+        if (player.x + player.width - 50 > borderRect.x && player.y + player.height + 20 < borderRect.y) {
           player.x = player.x;
           gameOver();
           displayVictoryMsg();
@@ -195,7 +203,7 @@ window.onload = function() {
         
       }
       if(checkCollision(verticalRect, borderRect) && border.type === "fish") {
-        if (player.y + player.height > borderRect.y) {
+        if (player.y + player.height > borderRect.y && player.x + player.width - 50 > borderRect.x ) {
           gameOver();
           displayVictoryMsg();
           if (catSound.playing === true) {
@@ -205,7 +213,7 @@ window.onload = function() {
       }  
     });
 
-      //check collision with mice
+    //check collision with mice
     mice.forEach (mouse => {
       let mouseRect = {
         x: mouse.x,
@@ -214,7 +222,7 @@ window.onload = function() {
         height: mouse.height
       }
       if(checkCollision(horizontalRect, mouseRect)) {
-        if (player.x + player.width > mouseRect.x && player.y + player.height < mouseRect.y) {
+        if (player.x + player.width - 100 > mouseRect.x && player.y + player.height + 20 < mouseRect.y) {
           displayGameOver();
           gameOver();
           if (catSound.playing === true) {
@@ -223,23 +231,23 @@ window.onload = function() {
           }
         }
       }
-      if(checkCollision(verticalRect, mouseRect)) {
-        if (player.y + player.height > mouseRect.y) {
-          displayGameOver();
-          gameOver();
-          if (catSound.playing === true) {
-            catSound.play();
-            mouseSound.play();
-          }
-        } else if (player.y < mouseRect.y + mouseRect.height) {
-          displayGameOver();
-          gameOver();
-          if (catSound.playing === true) {
-            catSound.play();
-            mouseSound.play();
-          }
-        }
-      }  
+      // if(checkCollision(verticalRect, mouseRect)) {
+      //   if (player.y + player.height > mouseRect.y && player.x + player.width > mouseRect.x ) {
+      //     displayGameOver();
+      //     gameOver();
+      //     if (catSound.playing === true) {
+      //       catSound.play();
+      //       mouseSound.play();
+      //     }
+      //   } else if (player.y < mouseRect.y + mouseRect.height && player.x + player.width > mouseRect.x ) {
+      //     displayGameOver();
+      //     gameOver();
+      //     if (catSound.playing === true) {
+      //       catSound.play();
+      //       mouseSound.play();
+      //     }
+      //   }
+      // }  
     });
   }
 
@@ -313,12 +321,15 @@ window.onload = function() {
   }
 
   function toggleSound () {
-    if (backgroundSound.playing === true) {
-      backgroundSound.stop();
-      catSound.playing = false;
-    } else {
+    let vol = document.getElementById("volume");
+    if (vol.className === "fas fa-volume-mute") {
       backgroundSound.play();
       catSound.playing = true;
+      vol.className = "fas fa-volume-up";
+    } else {
+      backgroundSound.stop();
+      catSound.playing = false;
+      vol.className = "fas fa-volume-mute";
     }
   }
   

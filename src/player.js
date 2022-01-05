@@ -20,24 +20,24 @@ function Player(x, y) {
   let framey = 0;
 
   this.step = function() {
-    if (this.xvel === 0) {
-      framex = 0;
-      framey = 0;
-    }
     //horiz mvmt
     if (this.active) {
+      if (this.xvel === 0 && !upKey) {
+        framex = 0;
+        framey = 0;
+      }
       if (!leftKey && !rightKey || leftKey && rightKey) {
         this.xvel *= this.friction;
         this.framex = 0;
         this.framey = 0;
-      } else if (rightKey) {
+      } else if (rightKey && !upKey) {
         this.image.src = `./images/sprite.png`;
         if (framex < 1) framex++;
         else framex = 0;
         if (framey < 3) framey++;
         else(framey = 0);
         this.xvel ++;
-      } else if (leftKey) {
+      } else if (leftKey && !upKey) {
         this.image.src = `./images/spriteback.png`;
         if (framex < 1) framex++;
         else framex = 0;
@@ -63,8 +63,8 @@ function Player(x, y) {
         height: border.height
       }
       if (upKey && this.y + this.height === borderRect.y && (this.x + this.width/2 + 16 > borderRect.x && this.x + this.width/2 - 16 < borderRect.x + borderRect.width)) {
-        framex = 0;
-        framey = 1;
+        framex = 1;
+        framey = 2;
         this.yvel -= 22;
       } 
     } )
