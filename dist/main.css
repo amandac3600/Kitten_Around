@@ -16,8 +16,7 @@ canvas {
   border-radius: 10px;
   width: 1280px;
   height: 720px;
-  margin-top: 200px;
-  margin-right: 40px;
+  margin-top: 10%;
 }
 
 .title {
@@ -47,7 +46,7 @@ canvas {
   position: absolute;
   justify-content: flex-end;
   margin-top: 100px;
-  margin-left: 1100px;
+  margin-left: 900px;
   font-size: 48px;
 }
 
@@ -58,18 +57,15 @@ canvas {
 .buttons {
   position: absolute;
   justify-content: flex-end;
-  top: 50px;
+  margin: auto;
+  top: 25px;
   right: 50px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 800;
-  font-size: 32px;
+  font-size: 30px;
 }
 
-.buttons li {
-  list-style-type: none;
-}
-
-.buttons li:hover {
+.buttons button:hover {
   color: cornflowerblue;
 }
 

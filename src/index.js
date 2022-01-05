@@ -32,18 +32,20 @@ window.onload = function() {
   let ctx = canvas.getContext("2d");
   let img = document.getElementById("image");
 
-  let player = new Player(500, 200);
+  let player = new Player(600, 200);
 
   //sounds and music
   let backgroundSound = new Sound("./sounds/background.mp3");
   let catSound = new Sound("./sounds/cat_pain.wav");
   let waterSound = new Sound("./sounds/water.wav");
   let mouseSound = new Sound("./sounds/mouse.mp3");
+  let eatingSound = new Sound("./sounds/eating.wav");
   
   function startGame () {
     gameLoop = setInterval(step, 30);  //30 fps
     player.setupInputs();
     backgroundSound.playing = false;
+    catSound.playing = false;
   }
 
 
@@ -63,13 +65,14 @@ window.onload = function() {
   borders.push(new Border(2050, 540, 200, 25, "log"));
   borders.push(new Border(2300, 640, 150, 25, "log"));
   borders.push(new Border(2350, 440, 150, 25, "log"));
-  borders.push(new Border(2600, 330, 200, 25, "log"));
-  borders.push(new Border(2900, 230, 150, 25, "log"));
+  borders.push(new Border(2600, 340, 200, 25, "log"));
+  borders.push(new Border(2900, 240, 150, 25, "log"));
   borders.push(new Border(2550, 660, 150, 25, "log"));
   borders.push(new Border(2700, 600, 300, 25, "log"));
   borders.push(new Border(3050, 500, 150, 25, "log"));
-  borders.push(new Border(3250, 380, 200, 25, "log"));
+  borders.push(new Border(3250, 400, 200, 25, "log"));
   borders.push(new Border(3500, 650, 400, 25, "log"));
+  borders.push(new Border(-1278, 680, 1282, 100, "water"));
   borders.push(new Border(0, 680, 1282, 100, "water"));
   borders.push(new Border(1278, 680, 1282, 100, "water"));
   borders.push(new Border(2556, 680, 1350, 100, "water"));
@@ -88,6 +91,7 @@ window.onload = function() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);  //clear the canvas before redrawing
 
     //draw background
+    ctx.drawImage(img, -1280, 0);
     ctx.drawImage(img, 0, 0);
     ctx.drawImage(img, 1280, 0);
     ctx.drawImage(img, 2560, 0);
@@ -95,7 +99,7 @@ window.onload = function() {
 
 
     if (player.xvel > 0) {
-      if (player.x < 3300 && player.x > 400) {
+      if (player.x < 3300 && player.x > 500) {
         ctx.translate(-player.xvel - 5, 0);
       }
     } else if (player.xvel < 0) {
@@ -185,14 +189,20 @@ window.onload = function() {
           // player.x = borderRect.x - player.width;
           player.x = player.x;
           gameOver();
-          player.active = false;
           displayVictoryMsg();
+          if (catSound.playing === true) {
+            eatingSound.play();
+          }
         }
         
       }
       if(checkCollision(verticalRect, borderRect) && border.type === "fish") {
         if (player.y + player.height > borderRect.y) {
+          gameOver();
           displayVictoryMsg();
+          if (catSound.playing === true) {
+            eatingSound.play();
+          }
         } 
       }  
     });
@@ -293,24 +303,24 @@ window.onload = function() {
     victoryMsg.setAttribute("id", "win");
     text.innerHTML = 'Yay! You fed Bobo!';
     button.innerText = 'New Game';
+    button.setAttribute("id", "new");
   }
 
   function displayVictoryMsg() {
     createVictoryMsg();
     let message = document.getElementById("win");
     message.classList.add("enable");
+    // let newgame = document.getElementById('new');
+    // new.addEventListener("click", restart)
   }
 
   function toggleSound () {
-    let vol = document.getElementById("vol");
     if (backgroundSound.playing === true) {
       backgroundSound.stop();
       catSound.playing = false;
-      vol.className = "false";
     } else {
       backgroundSound.play();
       catSound.playing = true;
-      vol.className = "false";
     }
   }
   

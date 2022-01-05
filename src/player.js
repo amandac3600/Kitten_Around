@@ -4,27 +4,45 @@ function Player(x, y) {
   this.x = x;
   this.y = y;
   this.image = new Image();
-  this.image.src = `./images/resizecat.png`;
+  this.image.src = `./images/sprite.png`;
+  this.image.width = 1098;
+  this.image.height = 1932;
   this.xvel = 0;
   this.yvel = 0;
   this.friction = 0.6;
   this.maxVel = 5;
-  this.width = 150;
-  this.height = 75;
+  this.width = 130;
+  this.height = 125;
   this.active = true;
   this.borders = [];
 
-  this.step = function() {
+  let framex = 0;
+  let framey = 0;
 
+  this.step = function() {
+    if (this.xvel === 0) {
+      framex = 0;
+      framey = 0;
+    }
     //horiz mvmt
     if (this.active) {
       if (!leftKey && !rightKey || leftKey && rightKey) {
         this.xvel *= this.friction;
+        this.framex = 0;
+        this.framey = 0;
       } else if (rightKey) {
-        this.image.src = `./images/resizecat.png`;
+        this.image.src = `./images/sprite.png`;
+        if (framex < 1) framex++;
+        else framex = 0;
+        if (framey < 3) framey++;
+        else(framey = 0);
         this.xvel ++;
       } else if (leftKey) {
-        this.image.src = `./images/back.png`;
+        this.image.src = `./images/spriteback.png`;
+        if (framex < 1) framex++;
+        else framex = 0;
+        if (framey < 3) framey++;
+        else(framey = 0);
         this.xvel --;
       }
       this.x += this.xvel;
@@ -45,6 +63,8 @@ function Player(x, y) {
         height: border.height
       }
       if (upKey && this.y + this.height === borderRect.y && (this.x + this.width/2> borderRect.x && this.x + this.width/2 < borderRect.x + borderRect.width)) {
+        framex = 0;
+        framey = 1;
         this.yvel -= 20;
       } 
     } )
@@ -86,8 +106,12 @@ function Player(x, y) {
   }
 
 
+  let spriteWidth = this.image.width/2;
+  let spriteHeight = this.image.height/4;
   this.draw = function(ctx) {
-    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    console.log(framex);
+    ctx.drawImage(this.image, framex*spriteWidth, framey*spriteHeight, spriteWidth, spriteHeight, this.x, this.y, this.width, this.height);
+    //image, xcoord, ycoord, width of image, height, xcoord where to draw, ycoord, desired width of drawing,height
   }
 
   this.setupInputs = function() {
