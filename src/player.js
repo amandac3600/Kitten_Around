@@ -44,9 +44,7 @@ function Player(x, y) {
         width: border.width,
         height: border.height
       }
-      if (upKey && this.y + this.height === borderRect.y && (this.x + this.width/2 > borderRect.x && this.x + this.width/2 < borderRect.x + borderRect.width)) {
-        console.log(this.y + this.height);
-        console.log(borderRect.y)
+      if (upKey && this.y + this.height === borderRect.y && (this.x + this.width/2> borderRect.x && this.x + this.width/2 < borderRect.x + borderRect.width)) {
         this.yvel -= 20;
       } 
     } )
@@ -56,7 +54,7 @@ function Player(x, y) {
 
 
     //gravity
-    this.yvel += 1;
+    this.yvel += 2;
 
     //adjust vel
     if (this.xvel > this.maxVel) {

@@ -5,6 +5,23 @@ const Sound = require("./sound.js");
 
 
 window.onload = function() {
+  let startscreen = document.getElementById("startscreen");
+  let button = document.getElementById("button");
+  function hide() {
+    startscreen.style.display = "none";
+    startscreen.setAttribute("id", "hidden");
+    backgroundSound.play();
+    backgroundSound.sound.volume = 0.05;
+  }
+  //gameloop
+  button.addEventListener("click", hide);
+  button.addEventListener("click", startGame);
+
+  let hiddenstart = document.getElementById("hidden");
+  if (!hiddenstart) {
+    createstartScreen();
+  }
+  
   let canvas = document.getElementById("canvas");
   let ctx = canvas.getContext("2d");
   let img = document.getElementById("image");
@@ -17,17 +34,19 @@ window.onload = function() {
   let waterSound = new Sound("./sounds/water.wav");
   let mouseSound = new Sound("./sounds/mouse.mp3");
   
-  let gameLoop = setInterval(step, 30);  //30 fps
+  function startGame () {
+    let gameLoop = setInterval(step, 30);  //30 fps
+  }
 
   player.setupInputs();
 
   let borders = [];
   borders.push(new Border(0, 620, 600, 25, "log"));
   borders.push(new Border(620, 520, 100, 25, "log"));
-  borders.push(new Border(740, 420, 300, 25, "log"));
-  borders.push(new Border(840, 320, 150, 25, "log"));
-  borders.push(new Border(1140, 320, 150, 25, "log"));
-  borders.push(new Border(1350, 220, 200, 25, "log"));
+  borders.push(new Border(740, 420, 250, 25, "log"));
+  borders.push(new Border(880, 320, 150, 25, "log"));
+  borders.push(new Border(1200, 300, 150, 25, "log"));
+  borders.push(new Border(1370, 220, 200, 25, "log"));
   borders.push(new Border(1800, 620, 150, 25, "log"));
   borders.push(new Border(2050, 540, 200, 25, "log"));
   borders.push(new Border(2300, 640, 150, 25, "log"));
@@ -41,7 +60,7 @@ window.onload = function() {
   borders.push(new Border(3500, 650, 400, 25, "log"));
   borders.push(new Border(0, 680, 1282, 100, "water"));
   borders.push(new Border(1278, 680, 1282, 100, "water"));
-  borders.push(new Border(2556, 680, 1282, 100, "water"));
+  borders.push(new Border(2556, 680, 1350, 100, "water"));
   player.borders = borders;
 
 
@@ -56,17 +75,19 @@ window.onload = function() {
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);  //clear the canvas before redrawing
 
+    //draw background
     ctx.drawImage(img, 0, 0);
     ctx.drawImage(img, 1280, 0);
     ctx.drawImage(img, 2560, 0);
+    ctx.drawImage(img, 3840, 0);
 
 
     if (player.xvel > 0) {
-      if (player.x < 3300) {
+      if (player.x < 3300 && player.x > 400) {
         ctx.translate(-player.xvel - 5, 0);
       }
     } else if (player.xvel < 0) {
-      if (player.x > 500) {
+      if (player.x > 500 && player.x < 3000) {
         ctx.translate(-player.xvel + 5, 0);
       }
     }
@@ -118,14 +139,14 @@ window.onload = function() {
       }
       //check collision with logs
       if(checkCollision(horizontalRect, borderRect) && border.type === "log") {
-        if (player.x + player.width > borderRect.x && player.y + player.height < borderRect.y) {
+        if (player.x + player.width > borderRect.x && player.y + player.height< borderRect.y) {
           // player.x = borderRect.x - player.width;
           player.x = player.x;
         }
         
       }
       if(checkCollision(verticalRect, borderRect) && border.type === "log") {
-        if (player.y + player.height > borderRect.y) {
+        if (player.y - player.height + 139 < borderRect.y) {
           player.y = borderRect.y - player.height - 5;
         } 
         // else if (player.y < borderRect.y + borderRect.height) {
@@ -212,6 +233,13 @@ window.onload = function() {
     clearInterval(gameLoop);
   }
 
+  function createstartScreen() {
+    let startScreen = document.getElementById('startscreen');
+    let text = document.createElement('p');
+    startScreen.appendChild(text);
+    text.innerHTML = 'Click the button below to start a new game';
+  }
+
   function createGameOver() {
     let gameOverMessage = document.createElement('form');
     let text = document.createElement('p');
@@ -251,5 +279,5 @@ window.onload = function() {
     let message = document.getElementById("win");
     message.classList.add("enable");
   }
-  backgroundSound.play();
+  
 }
