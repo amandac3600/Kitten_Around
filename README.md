@@ -30,7 +30,7 @@ In addition, this project will include:
 
 <img width="1024" src="/images/Homepage.png">
 
-* Game controls on the right include New Game and Pause Game buttons
+* Game control on the right includes New Game button
 * The game's instructions will be at the upper left hand corner and a button to mute and unmute the game's music will be at the upper right
 * Nav links at the bottom include links to this game's GitHub repository and the creator's LinkedIn profile
 
@@ -53,6 +53,7 @@ In addition, this project will include:
 * Tracker for high score
 * Add feature for double jump
 * Ability to kill enemies
+* Pause button for game
 * Give the character an action to attack
 * Powerups placed around the map
 * Add multiple map versions to cycle through

@@ -24,7 +24,6 @@ window.onload = function() {
   //toggle mute and unmute
   let volume = document.getElementById("volume");
   volume.addEventListener("click", toggleSound);
-  console.log(volume);
 
   let newGame = document.getElementById("newgame");
   newGame.addEventListener("click", restart);
@@ -63,7 +62,7 @@ window.onload = function() {
   borders.push(new Border(740, 420, 250, 25, "log"));
   borders.push(new Border(880, 320, 150, 25, "log"));
   borders.push(new Border(1200, 300, 150, 25, "log"));
-  borders.push(new Border(1370, 220, 200, 25, "log"));
+  borders.push(new Border(1370, 220, 250, 25, "log")); //
   borders.push(new Border(1800, 620, 150, 25, "log"));
   borders.push(new Border(2050, 540, 200, 25, "log"));
   borders.push(new Border(2300, 640, 150, 25, "log"));
@@ -83,10 +82,12 @@ window.onload = function() {
 
 
   let mice = [];
-  let mouse1 = new Mouse(350, 595);
-  let mouse2 = new Mouse(900, 390);
+  let mouse1 = new Mouse(550, 595);   //(x - 50, y, - 25)
+  let mouse2 = new Mouse(930, 395);
+  let mouse3 = new Mouse(1570, 195);
   mice.push(mouse1);
   mice.push(mouse2);
+  mice.push(mouse3);
 
   let fish = new Border(3670, 620, 100, 40, "fish");
   borders.push(fish);
@@ -126,15 +127,28 @@ window.onload = function() {
 
   function step() {  //main step function for things other than the player (like the mice)    
     player.step();
-    let num1;
-    // if (mouse1.x <= 10) {
-    //   num1 = 5;
-    //   mouse1.xvel = -num1 * -1;
-    // } else if (mouse1.x >= 550) {
-    //   num1 = -5;
-    //   mouse1.xvel = -num1 * -1;
-    // }
-    // mouse1.step(num1);
+
+    //mouse movement
+    if (mouse1.x <= 10) {
+      mouse1.xvel = 4;
+    } else if (mouse1.x >= 530) {
+      mouse1.xvel = -4;
+    }
+    mouse1.step(mouse1.xvel);
+
+    if (mouse2.x <= 725) {
+      mouse2.xvel = 4;
+    } else if (mouse2.x >= 930) {
+      mouse2.xvel = -4;
+    }
+    mouse2.step(mouse2.xvel);
+
+    if (mouse3.x <= 1360) {
+      mouse3.xvel = 4;
+    } else if (mouse3.x >= 1560) {
+      mouse3.xvel = -4;
+    }
+    mouse3.step(mouse3.xvel);
 
     let horizontalRect = {
       x: player.x + player.xvel,
@@ -330,8 +344,6 @@ window.onload = function() {
     createVictoryMsg();
     let message = document.getElementById("win");
     message.classList.add("enable");
-    // let newgame = document.getElementById('new');
-    // new.addEventListener("click", restart)
   }
 
   function toggleSound () {
