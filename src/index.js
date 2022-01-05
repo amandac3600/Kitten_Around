@@ -101,11 +101,11 @@ window.onload = function() {
 
 
     if (player.xvel > 0) {
-      if (player.x < 3000 && player.x > 500) {
+      if (player.x < 3200 && player.x > 500) {
         ctx.translate(-player.xvel - 5, 0);
       }
     } else if (player.xvel < 0) {
-      if (player.x > 500 && player.x < 3000) {
+      if (player.x > 500 && player.x < 3200) {
         ctx.translate(-player.xvel + 5, 0);
       }
     }
