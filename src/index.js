@@ -24,9 +24,6 @@ window.onload = function() {
   //toggle mute and unmute
   let volume = document.getElementById("volume");
   volume.addEventListener("click", toggleSound);
-
-  let newGame = document.getElementById("newgame");
-  newGame.addEventListener("click", restart);
   
   let canvas = document.getElementById("canvas");
   let ctx = canvas.getContext("2d");
@@ -48,12 +45,6 @@ window.onload = function() {
     player.setupInputs();
     backgroundSound.playing = false;
     catSound.playing = false;
-  }
-
-
-  function restart() {
-    gameOver();
-    startGame();
   }
 
   let borders = [];
@@ -111,11 +102,11 @@ window.onload = function() {
 
     if (player.xvel > 0) {
       if (player.x < 2800 && player.x > 500) {
-        ctx.translate(-player.xvel - 6, 0);
+        ctx.translate(-player.xvel - 5, 0);
       }
     } else if (player.xvel < 0) {
       if (player.x > 500 && player.x < 2800) {
-        ctx.translate(-player.xvel + 6, 0);
+        ctx.translate(-player.xvel + 5, 0);
       }
     }
     player.draw(ctx);   //redraw the player at the new pos
@@ -323,6 +314,7 @@ window.onload = function() {
     let text = document.createElement('p');
     startScreen.appendChild(text);
     text.innerHTML = 'Help Bobo get to the fish at the end of the pond! But be careful, the journey to her favorite food is filled with her enemies- water and mice!';
+    text.innerHTML = "Use WASD or the arrow keys to move and jump. Avoid touching the water and mice!"
   }
 
   function createGameOver() {
@@ -380,3 +372,4 @@ window.onload = function() {
   }
   
 }
+
