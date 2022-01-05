@@ -32,7 +32,7 @@ window.onload = function() {
   let ctx = canvas.getContext("2d");
   let img = document.getElementById("image");
 
-  let player = new Player(600, 200);
+  let player = new Player(200, 200);
 
   //sounds and music
   let backgroundSound = new Sound("./sounds/background.mp3");
@@ -62,22 +62,23 @@ window.onload = function() {
   borders.push(new Border(740, 420, 250, 25, "log"));
   borders.push(new Border(880, 320, 150, 25, "log"));
   borders.push(new Border(1200, 300, 150, 25, "log"));
-  borders.push(new Border(1370, 220, 250, 25, "log")); //
-  borders.push(new Border(1800, 620, 150, 25, "log"));
-  borders.push(new Border(2050, 540, 200, 25, "log"));
+  borders.push(new Border(1370, 220, 250, 25, "log")); 
+  borders.push(new Border(1800, 620, 150, 25, "log")); 
+  borders.push(new Border(2050, 540, 200, 25, "log")); 
   borders.push(new Border(2300, 640, 150, 25, "log"));
-  borders.push(new Border(2350, 440, 150, 25, "log"));
-  borders.push(new Border(2600, 340, 200, 25, "log"));
-  borders.push(new Border(2900, 240, 150, 25, "log"));
+  borders.push(new Border(2350, 480, 150, 25, "log")); 
+  borders.push(new Border(2600, 380, 200, 25, "log"));
+  borders.push(new Border(2900, 280, 150, 25, "log"));
   borders.push(new Border(2550, 660, 150, 25, "log"));
-  borders.push(new Border(2700, 600, 300, 25, "log"));
+  borders.push(new Border(2700, 600, 300, 25, "log")); //
   borders.push(new Border(3050, 500, 150, 25, "log"));
   borders.push(new Border(3250, 400, 200, 25, "log"));
-  borders.push(new Border(3500, 650, 400, 25, "log"));
+  borders.push(new Border(3600, 650, 500, 25, "log"));
   borders.push(new Border(-1278, 680, 1282, 100, "water"));
   borders.push(new Border(0, 680, 1282, 100, "water"));
   borders.push(new Border(1278, 680, 1282, 100, "water"));
-  borders.push(new Border(2556, 680, 1350, 100, "water"));
+  borders.push(new Border(2558, 680, 1282, 100, "water"));
+  borders.push(new Border(3838, 680, 1282, 100, "water"));
   player.borders = borders;
 
 
@@ -85,11 +86,15 @@ window.onload = function() {
   let mouse1 = new Mouse(550, 595);   //(x - 50, y, - 25)
   let mouse2 = new Mouse(930, 395);
   let mouse3 = new Mouse(1570, 195);
+  let mouse4 = new Mouse(2200, 515);
+  let mouse5 = new Mouse(2950, 575);
   mice.push(mouse1);
   mice.push(mouse2);
   mice.push(mouse3);
+  mice.push(mouse4);
+  mice.push(mouse5);
 
-  let fish = new Border(3670, 620, 100, 40, "fish");
+  let fish = new Border(3800, 620, 100, 40, "fish");
   borders.push(fish);
 
   function draw() {
@@ -105,12 +110,12 @@ window.onload = function() {
 
 
     if (player.xvel > 0) {
-      if (player.x < 3300 && player.x > 500) {
-        ctx.translate(-player.xvel - 5, 0);
+      if (player.x < 2800 && player.x > 500) {
+        ctx.translate(-player.xvel - 6, 0);
       }
     } else if (player.xvel < 0) {
-      if (player.x > 500 && player.x < 3200) {
-        ctx.translate(-player.xvel + 5, 0);
+      if (player.x > 500 && player.x < 2800) {
+        ctx.translate(-player.xvel + 6, 0);
       }
     }
     player.draw(ctx);   //redraw the player at the new pos
@@ -150,6 +155,20 @@ window.onload = function() {
     }
     mouse3.step(mouse3.xvel);
 
+    if (mouse4.x <= 2030) {
+      mouse4.xvel = 3;
+    } else if (mouse4.x >= 2190) {
+      mouse4.xvel = -3;
+    }
+    mouse4.step(mouse4.xvel);
+
+    if (mouse5.x <= 2700) {
+      mouse5.xvel = 4;
+    } else if (mouse5.x >= 2940) {
+      mouse5.xvel = -4;
+    }
+    mouse5.step(mouse5.xvel);
+
     let horizontalRect = {
       x: player.x + player.xvel,
       y: player.y,
@@ -185,8 +204,9 @@ window.onload = function() {
         }
         
       }
+
       if(checkCollision(verticalRect, borderRect) && border.type === "log") {
-        if (player.y - player.height + 200 < borderRect.y && player.x + player.width - 55 > borderRect.x) {
+        if (player.y - player.height + 240 < borderRect.y && player.x + player.width - 50 > borderRect.x) {
           player.y = borderRect.y - player.height - 5;
         } 
       }  

@@ -68,10 +68,11 @@ function Player(x, y) {
         this.yvel -= 22;
       } 
     } )
+
+    // if (upKey) {
+    //   this.yvel -= 4;
+    // }
       
-
-      // this.y -= 10;
-
 
     //gravity
     this.yvel += 2;
