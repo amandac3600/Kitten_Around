@@ -83,7 +83,7 @@ window.onload = function() {
 
 
   let mice = [];
-  let mouse1 = new Mouse(550, 595);
+  let mouse1 = new Mouse(350, 595);
   let mouse2 = new Mouse(900, 390);
   mice.push(mouse1);
   mice.push(mouse2);
@@ -221,8 +221,20 @@ window.onload = function() {
         width: mouse.width,
         height: mouse.height
       }
-      if(checkCollision(horizontalRect, mouseRect)) {
-        if (player.x + player.width - 100 > mouseRect.x && player.y + player.height + 20 < mouseRect.y) {
+      // && player.y + player.height + 20 < mouseRect.y
+
+      //mouse on right of cat
+      if(checkCollision(horizontalRect, mouseRect) && mouse.x > horizontalRect.x) {
+        if (player.x + 70 > mouseRect.x ) {
+          displayGameOver();
+          gameOver();
+          if (catSound.playing === true) {
+            catSound.play();
+            mouseSound.play();
+          }
+        }
+      // mouse on left of cat
+        if (player.x < mouseRect.x && mouse.x + mouse.width < horizontalRect.x) {
           displayGameOver();
           gameOver();
           if (catSound.playing === true) {
@@ -231,6 +243,8 @@ window.onload = function() {
           }
         }
       }
+      
+
       // if(checkCollision(verticalRect, mouseRect)) {
       //   if (player.y + player.height > mouseRect.y && player.x + player.width > mouseRect.x ) {
       //     displayGameOver();
