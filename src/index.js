@@ -11,7 +11,6 @@ window.onload = function() {
   function hide() {
     startscreen.style.display = "none";
     startscreen.setAttribute("id", "hidden");
-    backgroundSound.play();
   }
   //gameloop
   button.addEventListener("click", hide);
@@ -22,8 +21,12 @@ window.onload = function() {
     createstartScreen();
   }
 
+  //toggle mute and unmute
   let volume = document.getElementById("volume");
   volume.addEventListener("click", toggleSound);
+
+  let newGame = document.getElementById("newgame");
+  newGame.addEventListener("click", restart);
   
   let canvas = document.getElementById("canvas");
   let ctx = canvas.getContext("2d");
@@ -40,8 +43,14 @@ window.onload = function() {
   function startGame () {
     gameLoop = setInterval(step, 30);  //30 fps
     player.setupInputs();
+    backgroundSound.playing = false;
   }
 
+
+  function restart() {
+    gameOver();
+    startGame();
+  }
 
   let borders = [];
   borders.push(new Border(0, 620, 600, 25, "log"));
@@ -249,7 +258,7 @@ window.onload = function() {
     let startScreen = document.getElementById('startscreen');
     let text = document.createElement('p');
     startScreen.appendChild(text);
-    text.innerHTML = 'Click the button below to start a new game';
+    text.innerHTML = 'Help Bobo get to the fish at the end of the pond! But be careful, the journey to her favorite food is filled with her enemies- water and mice!';
   }
 
   function createGameOver() {
@@ -293,12 +302,15 @@ window.onload = function() {
   }
 
   function toggleSound () {
+    let vol = document.getElementById("vol");
     if (backgroundSound.playing === true) {
       backgroundSound.stop();
       catSound.playing = false;
+      vol.className = "false";
     } else {
       backgroundSound.play();
       catSound.playing = true;
+      vol.className = "false";
     }
   }
   

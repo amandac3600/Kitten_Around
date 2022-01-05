@@ -48,7 +48,7 @@ canvas {
   font-size: 48px;
 }
 
-.volume ul:hover {
+#volume:hover {
   color: cornflowerblue;
 }
 
@@ -115,7 +115,7 @@ a:last-child {
 
 #startscreen {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 44px;
+  font-size: 36px;
   font-weight: 700;
   position: absolute;
   justify-content: center;
@@ -138,6 +138,12 @@ a:last-child {
 
 button {
   font-size: 32px;
+  font-weight: 700;
+  color: rgb(79, 128, 177);
   border-radius: 5px;
   margin-top: 50px;
+}
+
+button:hover {
+  background-color: rgb(187, 203, 233);
 }
