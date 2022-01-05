@@ -2,27 +2,28 @@
 
 Play here!: (link to be inserted later)
 
-Kittin' Around is a 2D web-based platform game where you will be playing as a hungry cat, Bobo.  In order to feed Bobo, you have to navigate her to the fish at the end of the pond. There will be platforms for Bobo to jump on and around, as well as enemy mice for Bobo to avoid.  The game ends when Bobo gets her fish or when she touches a mouse.
+Kittin' Around is a 2D web-based platform game where you will be playing as a hungry cat, Bobo.  In order to feed Bobo, you have to navigate her to the fish at the end of the pond. There will be platforms for Bobo to jump on and around, as well as enemy mice for Bobo to avoid.  The game ends when Bobo gets her fish or when she touches water or a mouse.
 
 # Instructions
 
-Your goal is to get Bobo to the finish line at the end of the map, which will be designated by a fish.  
+Your goal is to get Bobo to the finish at the end of the map, which will be designated by a fish.  
 Bobo hates water, so you must make sure to avoid falling into the pond on the way.  On the path, there will be enemy mice for Bobo to avoid.
 
-Using the left and right arrow keys to move and the up arrow key to jump, get the hungry Bobo to the fish as fast as possible!
+Using the left and right arrow keys (or A and D) to move and the up arrow key (or W) to jump, get the hungry Bobo to the fish as fast as possible!
 
 # Functionality & MVP
 
 In Kitten' Around, users will be able to:
 
-* Start, pause, and reset the game
+* Start and reset the game
 * Use left/right arrow keys to move the character left and right
 * Use the up arrow key to have the character jump
-* Toggle on and off the background music
+* Toggle on and off the background music and sound effects
 
 In addition, this project will include:
 
-* An instructions tab for users to click on
+* A start screen
+* Instructions on the main page
 * A production README
 
 # Wireframes
@@ -30,7 +31,7 @@ In addition, this project will include:
 <img width="1024" src="/images/Homepage.png">
 
 * Game controls on the right include New Game and Pause Game buttons
-* There will be a button at the top to see the game's instructions and a button to mute and unmute the game's music
+* The game's instructions will be at the upper left hand corner and a button to mute and unmute the game's music will be at the upper right
 * Nav links at the bottom include links to this game's GitHub repository and the creator's LinkedIn profile
 
 # Technologies
@@ -53,5 +54,5 @@ In addition, this project will include:
 * Add feature for double jump
 * Ability to kill enemies
 * Give the character an action to attack
-* Manually pick up powerups
+* Powerups placed around the map
 * Add multiple map versions to cycle through

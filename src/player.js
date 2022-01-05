@@ -109,7 +109,6 @@ function Player(x, y) {
   let spriteWidth = this.image.width/2;
   let spriteHeight = this.image.height/4;
   this.draw = function(ctx) {
-    console.log(framex);
     ctx.drawImage(this.image, framex*spriteWidth, framey*spriteHeight, spriteWidth, spriteHeight, this.x, this.y, this.width, this.height);
     //image, xcoord, ycoord, width of image, height, xcoord where to draw, ycoord, desired width of drawing,height
   }

@@ -39,7 +39,9 @@ window.onload = function() {
   let catSound = new Sound("./sounds/cat_pain.wav");
   let waterSound = new Sound("./sounds/water.wav");
   let mouseSound = new Sound("./sounds/mouse.mp3");
+  mouseSound.sound.volume = 0.2;
   let eatingSound = new Sound("./sounds/eating.wav");
+  eatingSound.sound.volume = 0.5;
   
   function startGame () {
     gameLoop = setInterval(step, 30);  //30 fps
@@ -162,7 +164,7 @@ window.onload = function() {
         
       }
       if(checkCollision(verticalRect, borderRect) && border.type === "log") {
-        if (player.y - player.height + 139 < borderRect.y) {
+        if (player.y - player.height + 180 < borderRect.y) {
           player.y = borderRect.y - player.height - 5;
         } 
         // else if (player.y < borderRect.y + borderRect.height) {
@@ -178,6 +180,7 @@ window.onload = function() {
           gameOver();
           if (catSound.playing === true) {
             catSound.play();
+            waterSound.sound.volume = 0.3;
             waterSound.play();
           }
         } 
@@ -281,7 +284,7 @@ window.onload = function() {
     gameOverMessage.appendChild(button);
     gameOverMessage.classList.add("ggmessage");
     gameOverMessage.setAttribute("id", "gg");
-    text.innerHTML = 'Game Over';
+    text.innerHTML = 'You ruined Bobo\'s appetite';
     button.innerText = 'New Game';
   }
 
