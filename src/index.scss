@@ -72,7 +72,7 @@ body {
   display: flex;
   align-items: flex-end;
   list-style: none;
-  top: 5500%;
+  top: 5000%;
   right: 2%;
 }
 
@@ -129,7 +129,6 @@ a:last-child {
 }
 
 #button {
-  border: 3px solid cornflowerblue;
   cursor: pointer;
   position: sticky;
   z-index: 1000;
