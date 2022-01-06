@@ -9,6 +9,7 @@ window.onload = function() {
   let startscreen = document.getElementById("startscreen");
   let button = document.getElementById("button");
   function hide() {
+    console.log('hiiii')
     startscreen.style.display = "none";
     startscreen.setAttribute("id", "hidden");
   }
@@ -85,7 +86,7 @@ window.onload = function() {
   mice.push(mouse4);
   mice.push(mouse5);
 
-  let fish = new Border(3800, 620, 100, 40, "fish");
+  let fish = new Border(3700, 620, 100, 40, "fish");
   borders.push(fish);
 
   function draw() {
@@ -101,11 +102,11 @@ window.onload = function() {
 
 
     if (player.xvel > 0) {
-      if (player.x < 3200 && player.x > 500) {
+      if (player.x < 3300 && player.x > 500) {
         ctx.translate(-player.xvel - 5, 0);
       }
     } else if (player.xvel < 0) {
-      if (player.x > 500 && player.x < 3200) {
+      if (player.x > 500 && player.x < 3300) {
         ctx.translate(-player.xvel + 5, 0);
       }
     }
@@ -197,14 +198,19 @@ window.onload = function() {
       }
 
       if(checkCollision(verticalRect, borderRect) && border.type === "log") {
-        if (player.y - player.height + 240 < borderRect.y && player.x + player.width - 50 > borderRect.x) {
+        // left of log
+        if (player.y - player.height + 240 < borderRect.y && player.x + player.width - 50 > borderRect.x && player.x + player.width / 2 < borderRect.x + borderRect.width / 2) {
           player.y = borderRect.y - player.height - 5;
         } 
-      }  
+        //right of log
+        if (player.y - player.height + 240 < borderRect.y && player.x + player.width - 80 < borderRect.x + borderRect.width && player.x + player.width / 2 > borderRect.x + borderRect.width / 2) {
+          player.y = borderRect.y - player.height - 5;
+        } 
+      }
 
       //check collision with water
       if(checkCollision(verticalRect, borderRect) && border.type === "water") {
-        if (player.y + player.height > borderRect.y) {
+        if (player.y + player.height - 10 > borderRect.y) {
           displayGameOver();
           gameOver();
           if (catSound.playing === true) {
@@ -269,24 +275,6 @@ window.onload = function() {
         }
       }
       
-
-      // if(checkCollision(verticalRect, mouseRect)) {
-      //   if (player.y + player.height > mouseRect.y && player.x + player.width > mouseRect.x ) {
-      //     displayGameOver();
-      //     gameOver();
-      //     if (catSound.playing === true) {
-      //       catSound.play();
-      //       mouseSound.play();
-      //     }
-      //   } else if (player.y < mouseRect.y + mouseRect.height && player.x + player.width > mouseRect.x ) {
-      //     displayGameOver();
-      //     gameOver();
-      //     if (catSound.playing === true) {
-      //       catSound.play();
-      //       mouseSound.play();
-      //     }
-      //   }
-      // }  
     });
   }
 
@@ -313,8 +301,7 @@ window.onload = function() {
     let startScreen = document.getElementById('startscreen');
     let text = document.createElement('p');
     startScreen.appendChild(text);
-    text.innerHTML = 'Help Bobo get to the fish at the end of the pond! But be careful, the journey to her favorite food is filled with her enemies- water and mice!';
-    text.innerHTML = "Use WASD or the arrow keys to move and jump. Avoid touching the water and mice!"
+    text.innerHTML = 'Help Bobo get to the fish at the end of the pond! But be careful, the journey to her favorite food is filled with her enemies- water and mice! <br /> <br /> Use WASD or the arrow keys to move and jump. Avoid touching the water and mice!';
   }
 
   function createGameOver() {
@@ -329,9 +316,11 @@ window.onload = function() {
     gameOverMessage.setAttribute("id", "gg");
     text.innerHTML = 'You ruined Bobo\'s appetite';
     button.innerText = 'New Game';
+    button.setAttribute("id", "new");
   }
 
   function displayGameOver() {
+    console.log("game over");
     createGameOver();
     let message = document.getElementById("gg");
     message.classList.add("enable");
@@ -359,7 +348,9 @@ window.onload = function() {
   }
 
   function toggleSound () {
+    
     let vol = document.getElementById("volume");
+    console.log(vol);
     if (vol.className === "fas fa-volume-mute") {
       backgroundSound.play();
       catSound.playing = true;
