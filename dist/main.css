@@ -63,7 +63,7 @@ body {
   height: 40px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 800;
-  font-size: 30px;
+  font-size: 28px;
 }
 
 .buttons button:hover {
@@ -150,7 +150,7 @@ a:last-child {
 button {
   cursor: pointer;
   position: absolute;
-  font-size: 32px;
+  font-size: 28px;
   height: 40px;
   font-weight: 700;
   color: #4f80b1;

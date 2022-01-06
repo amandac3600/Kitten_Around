@@ -1,5 +1,6 @@
 const Sound = require("./sound.js");
 let jumpSound = new Sound("./sounds/jump.mp3");
+jumpSound.sound.volume = 0.05;
 
 let upKey, rightKey, leftKey;
 
