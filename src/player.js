@@ -12,7 +12,7 @@ function Player(x, y) {
   this.image.height = 1932;
   this.xvel = 0;
   this.yvel = 0;
-  this.friction = 0.6;
+  this.friction = 0.7;
   this.maxVel = 5;
   this.width = 130;
   this.height = 125;

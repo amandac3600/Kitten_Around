@@ -11,13 +11,14 @@ body {
   text-shadow: -1px 0 #93aac2, 0 1px slategray, 1px 0 slategray, 0 -1px slategray;
 }
 
-canvas {
+#canvas {
+  width: 70%;
+  height: auto;
+  margin: auto;
   position: absolute;
   border: 5px solid #ebf0f3;
   border-radius: 10px;
-  width: 1280px;
-  height: 720px;
-  margin-top: 10%;
+  margin-top: 8%;
   z-index: -1;
 }
 
@@ -55,6 +56,7 @@ canvas {
 }
 
 .buttons {
+  cursor: pointer;
   position: absolute;
   justify-content: flex-end;
   right: 50px;
@@ -71,9 +73,10 @@ canvas {
 .socials ul {
   position: absolute;
   display: flex;
+  align-items: flex-end;
   list-style: none;
   top: 5500%;
-  right: 5%;
+  right: 2%;
 }
 
 a {
@@ -108,7 +111,7 @@ a:last-child {
   border: 3px solid whitesmoke;
   border-radius: 10px;
   background-color: #658fdd;
-  top: 2500%;
+  top: 2000%;
   left: 35%;
 }
 
@@ -118,22 +121,27 @@ a:last-child {
   font-weight: 700;
   position: absolute;
   justify-content: center;
-  width: 800px;
-  height: 550px;
+  width: 55%;
+  height: auto;
   border: 3px solid whitesmoke;
   border-radius: 10px;
   background-color: #6899e4;
+  padding-bottom: 4%;
   margin-top: 14.3%;
   margin-left: 0%;
 }
 
 #button {
-  position: relative;
+  border: 3px solid cornflowerblue;
+  cursor: pointer;
+  position: sticky;
   z-index: 1000;
   font-size: 32px;
   justify-content: center;
-  margin: auto;
-  top: 80%;
+  align-items: flex-end;
+  margin-top: 0%;
+  top: 100%;
+  right: 44%;
 }
 
 #button:hover {
@@ -141,6 +149,7 @@ a:last-child {
 }
 
 button {
+  cursor: pointer;
   position: absolute;
   font-size: 32px;
   height: 40px;
@@ -151,12 +160,14 @@ button {
 }
 
 #newgame {
+  cursor: pointer;
   margin-top: 120%;
   right: 200%;
   width: 200px;
 }
 
 #new {
+  cursor: pointer;
   position: relative;
   margin-top: 0%;
 }
