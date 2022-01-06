@@ -13,7 +13,7 @@ function Player(x, y) {
   this.image.height = 1932;
   this.xvel = 0;
   this.yvel = 0;
-  this.friction = 0.7;
+  this.friction = 0.4;
   this.maxVel = 5;
   this.width = 130;
   this.height = 125;
@@ -66,24 +66,20 @@ function Player(x, y) {
         width: border.width,
         height: border.height
       }
-      if (upKey && this.y + this.height === borderRect.y && (this.x + this.width/2 + 16 > borderRect.x && this.x + this.width/2 - 16 < borderRect.x + borderRect.width)) {
+      if (upKey && this.y + this.height === borderRect.y + 5 && (this.x + this.width/2 + 16 > borderRect.x && this.x + this.width/2 - 16 < borderRect.x + borderRect.width)) {
         let vol = document.getElementById("volume");
         if (vol.className === "fas fa-volume-up") {
           jumpSound.play();
         } 
         framex = 1;
         framey = 2;
-        this.yvel -= 22;
+        this.yvel -= 13;
       } 
     } )
-
-    // if (upKey) {
-    //   this.yvel -= 4;
-    // }
       
 
     //gravity
-    this.yvel += 2;
+    this.yvel += 1.3;
 
     //adjust vel
     if (this.xvel > this.maxVel) {
@@ -91,12 +87,9 @@ function Player(x, y) {
     } else if (this.xvel < -this.maxVel) {
       this.xvel = -this.maxVel;
     }
-    if (this.yvel > this.maxVel) {
+    if (this.yvel > this.maxVel + 5) {
       this.yvel = this.maxVel;
     } 
-    // if (this.yvel < -this.maxVel) {
-    //   this.yvel = -this.maxVel;
-    // }
     
 
     if (this.xvel > 0) {
@@ -104,11 +97,11 @@ function Player(x, y) {
     } else {
       this.xvel = Math.ceil(this.xvel);
     }
-    if (this.yvel > 0) {
-      this.yvel = Math.floor(this.yvel);
-    } else {
-      this.yvel = Math.ceil(this.yvel);
-    }
+    // if (this.yvel > 0) {
+    //   this.yvel = Math.floor(this.yvel);
+    // } else {
+    //   this.yvel = Math.ceil(this.yvel);
+    // }
 
     this.x += this.xvel;
     this.y += this.yvel;

@@ -202,6 +202,7 @@ window.onload = function() {
       if(checkCollision(horizontalRect, borderRect) && border.type === "log") {
         if (player.x + player.width > borderRect.x && player.y + player.height < borderRect.y) {
           player.x = player.x;
+          player.yvel = 0;
         }
         
       }
@@ -209,11 +210,13 @@ window.onload = function() {
       if(checkCollision(verticalRect, borderRect) && border.type === "log") {
         // left of log
         if (player.y - player.height + 240 < borderRect.y && player.x + player.width - 50 > borderRect.x && player.x + player.width / 2 < borderRect.x + borderRect.width / 2) {
-          player.y = borderRect.y - player.height - 5;
+          player.y = borderRect.y - player.height + 5;
+          player.yvel = 0;
         } 
         //right of log
         if (player.y - player.height + 240 < borderRect.y && player.x + player.width - 80 < borderRect.x + borderRect.width && player.x + player.width / 2 > borderRect.x + borderRect.width / 2) {
-          player.y = borderRect.y - player.height - 5;
+          player.y = borderRect.y - player.height + 5;
+          player.yvel = 0;
         } 
       }
 
@@ -334,7 +337,7 @@ window.onload = function() {
     let startScreen = document.getElementById('startscreen');
     let text = document.createElement('p');
     startScreen.appendChild(text);
-    text.innerHTML = 'Help Bobo get to the fish at the end of the pond! But be careful, the journey to her favorite food is filled with her enemies- water and mice! <br /> <br /> Use WASD or the arrow keys to move and jump. Avoid touching the water and mice! \n ';
+    text.innerHTML = 'Help Bobo the cat get to the fish at the end of the pond! But be careful, the journey to her favorite food is filled with her enemies- water and mice! <br /> <br /> Use WASD or the arrow keys to move and jump. Avoid touching the water and mice! \n ';
     text.setAttribute("id", "intro");
   }
 
