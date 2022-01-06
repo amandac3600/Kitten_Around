@@ -30,7 +30,7 @@ window.onload = function() {
   let ctx = canvas.getContext("2d");
   let img = document.getElementById("image");
 
-  let player = new Player(200, 200);
+  let player = new Player(150, 400);
 
   //sounds and music
   let backgroundSound = new Sound("./sounds/background.mp3");
@@ -62,9 +62,9 @@ window.onload = function() {
   borders.push(new Border(2600, 380, 200, 25, "log"));
   borders.push(new Border(2900, 280, 150, 25, "log"));
   borders.push(new Border(2550, 660, 150, 25, "log"));
-  borders.push(new Border(2700, 600, 300, 25, "log")); //
+  borders.push(new Border(2700, 600, 300, 25, "log")); 
   borders.push(new Border(3050, 500, 150, 25, "log"));
-  borders.push(new Border(3250, 400, 200, 25, "log"));
+  borders.push(new Border(3250, 400, 240, 25, "log")); //
   borders.push(new Border(3600, 650, 500, 25, "log"));
   borders.push(new Border(-1278, 680, 1282, 100, "water"));
   borders.push(new Border(0, 680, 1282, 100, "water"));
@@ -80,11 +80,13 @@ window.onload = function() {
   let mouse3 = new Mouse(1570, 195);
   let mouse4 = new Mouse(2200, 515);
   let mouse5 = new Mouse(2950, 575);
+  let mouse6 = new Mouse(3490, 375);
   mice.push(mouse1);
   mice.push(mouse2);
   mice.push(mouse3);
   mice.push(mouse4);
   mice.push(mouse5);
+  mice.push(mouse6);
 
   let fish = new Border(3700, 620, 100, 40, "fish");
   borders.push(fish);
@@ -161,6 +163,14 @@ window.onload = function() {
     }
     mouse5.step(mouse5.xvel);
 
+    if (mouse6.x <= 3240) {
+      mouse6.xvel = 4;
+    } else if (mouse6.x >= 3430) {
+      mouse6.xvel = -4;
+    }
+    mouse6.step(mouse6.xvel);
+
+
     let horizontalRect = {
       x: player.x + player.xvel,
       y: player.y,
@@ -213,11 +223,17 @@ window.onload = function() {
         if (player.y + player.height - 10 > borderRect.y) {
           displayGameOver();
           gameOver();
-          if (catSound.playing === true) {
+          let vol = document.getElementById("volume");
+          if (vol.className === "fas fa-volume-up") {
             catSound.play();
             waterSound.sound.volume = 0.3;
             waterSound.play();
           }
+          // if (catSound.playing === true) {
+          //   catSound.play();
+          //   waterSound.sound.volume = 0.3;
+          //   waterSound.play();
+          // }
         } 
       } 
 
@@ -227,9 +243,13 @@ window.onload = function() {
           player.x = player.x;
           gameOver();
           displayVictoryMsg();
-          if (catSound.playing === true) {
+          let vol = document.getElementById("volume");
+          if (vol.className === "fas fa-volume-up") {
             eatingSound.play();
           }
+          // if (catSound.playing === true) {
+          //   eatingSound.play();
+          // }
         }
         
       }
@@ -237,9 +257,13 @@ window.onload = function() {
         if (player.y + player.height > borderRect.y && player.x + player.width - 50 > borderRect.x ) {
           gameOver();
           displayVictoryMsg();
-          if (catSound.playing === true) {
+          let vol = document.getElementById("volume");
+          if (vol.className === "fas fa-volume-up") {
             eatingSound.play();
           }
+          // if (catSound.playing === true) {
+          //   eatingSound.play();
+          // }
         } 
       }  
     });
@@ -259,19 +283,29 @@ window.onload = function() {
         if (player.x + 70 > mouseRect.x ) {
           displayGameOver();
           gameOver();
-          if (catSound.playing === true) {
+          let vol = document.getElementById("volume");
+          if (vol.className === "fas fa-volume-up") {
             catSound.play();
             mouseSound.play();
           }
+          // if (catSound.playing === true) {
+          //   catSound.play();
+          //   mouseSound.play();
+          // }
         }
       // mouse on left of cat
         if (player.x < mouseRect.x && mouse.x + mouse.width < horizontalRect.x) {
           displayGameOver();
           gameOver();
-          if (catSound.playing === true) {
+          let vol = document.getElementById("volume");
+          if (vol.className === "fas fa-volume-up") {
             catSound.play();
             mouseSound.play();
           }
+          // if (catSound.playing === true) {
+          //   catSound.play();
+          //   mouseSound.play();
+          // }
         }
       }
       
@@ -348,16 +382,14 @@ window.onload = function() {
   }
 
   function toggleSound () {
-    
     let vol = document.getElementById("volume");
-    console.log(vol);
     if (vol.className === "fas fa-volume-mute") {
       backgroundSound.play();
-      catSound.playing = true;
+      // catSound.playing = true;
       vol.className = "fas fa-volume-up";
     } else {
       backgroundSound.stop();
-      catSound.playing = false;
+      // catSound.playing = false;
       vol.className = "fas fa-volume-mute";
     }
   }

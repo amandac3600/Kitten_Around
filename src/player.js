@@ -1,4 +1,7 @@
-let upKey, rightKey, downKey, leftKey;
+const Sound = require("./sound.js");
+let jumpSound = new Sound("./sounds/jump.mp3");
+
+let upKey, rightKey, leftKey;
 
 function Player(x, y) {
   this.x = x;
@@ -63,6 +66,10 @@ function Player(x, y) {
         height: border.height
       }
       if (upKey && this.y + this.height === borderRect.y && (this.x + this.width/2 + 16 > borderRect.x && this.x + this.width/2 - 16 < borderRect.x + borderRect.width)) {
+        let vol = document.getElementById("volume");
+        if (vol.className === "fas fa-volume-up") {
+          jumpSound.play();
+        } 
         framex = 1;
         framey = 2;
         this.yvel -= 22;
