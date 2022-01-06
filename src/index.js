@@ -50,7 +50,7 @@ window.onload = function() {
   let borders = [];
   borders.push(new Border(0, 620, 600, 25, "log"));
   borders.push(new Border(620, 520, 100, 25, "log"));
-  borders.push(new Border(740, 420, 250, 25, "log"));
+  borders.push(new Border(750, 420, 250, 25, "log"));
   borders.push(new Border(880, 320, 150, 25, "log"));
   borders.push(new Border(1200, 300, 150, 25, "log"));
   borders.push(new Border(1370, 220, 250, 25, "log")); 
@@ -134,7 +134,7 @@ window.onload = function() {
     }
     mouse1.step(mouse1.xvel);
 
-    if (mouse2.x <= 725) {
+    if (mouse2.x <= 735) {
       mouse2.xvel = 4;
     } else if (mouse2.x >= 930) {
       mouse2.xvel = -4;
@@ -209,12 +209,12 @@ window.onload = function() {
 
       if(checkCollision(verticalRect, borderRect) && border.type === "log") {
         // left of log
-        if (player.y - player.height + 240 < borderRect.y && player.x + player.width - 50 > borderRect.x && player.x + player.width / 2 < borderRect.x + borderRect.width / 2) {
+        if (player.y - player.height + 220 < borderRect.y && player.x + player.width - 50 > borderRect.x && player.x + player.width / 2 < borderRect.x + borderRect.width / 2) {
           player.y = borderRect.y - player.height + 5;
           player.yvel = 0;
         } 
         //right of log
-        if (player.y - player.height + 240 < borderRect.y && player.x + player.width - 80 < borderRect.x + borderRect.width && player.x + player.width / 2 > borderRect.x + borderRect.width / 2) {
+        if (player.y - player.height + 220 < borderRect.y && player.x + player.width - 80 < borderRect.x + borderRect.width && player.x + player.width / 2 > borderRect.x + borderRect.width / 2) {
           player.y = borderRect.y - player.height + 5;
           player.yvel = 0;
         } 

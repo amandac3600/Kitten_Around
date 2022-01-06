@@ -97,11 +97,6 @@ function Player(x, y) {
     } else {
       this.xvel = Math.ceil(this.xvel);
     }
-    // if (this.yvel > 0) {
-    //   this.yvel = Math.floor(this.yvel);
-    // } else {
-    //   this.yvel = Math.ceil(this.yvel);
-    // }
 
     this.x += this.xvel;
     this.y += this.yvel;
