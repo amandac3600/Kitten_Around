@@ -335,6 +335,7 @@ window.onload = function() {
     let text = document.createElement('p');
     startScreen.appendChild(text);
     text.innerHTML = 'Help Bobo get to the fish at the end of the pond! But be careful, the journey to her favorite food is filled with her enemies- water and mice! <br /> <br /> Use WASD or the arrow keys to move and jump. Avoid touching the water and mice! \n ';
+    text.setAttribute("id", "intro");
   }
 
   function createGameOver() {

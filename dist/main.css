@@ -127,7 +127,7 @@ a:last-child {
   border-radius: 10px;
   background-color: #6899e4;
   padding-bottom: 4%;
-  margin-top: 14.3%;
+  margin-top: 13%;
   margin-left: 0%;
 }
 
@@ -173,4 +173,8 @@ button {
 
 button:hover {
   background-color: #bbcbe9;
+}
+
+#intro {
+  padding-bottom: 20px;
 }
