@@ -18,7 +18,7 @@ body {
   position: absolute;
   border: 5px solid #ebf0f3;
   border-radius: 10px;
-  margin-top: 8%;
+  margin-top: 150px;
   z-index: -1;
 }
 
@@ -37,15 +37,15 @@ body {
   font-weight: 700;
   color: #4f80b1;
   border-radius: 5px;
-  left: 100px;
-  margin-top: 5%;
+  left: 120px;
+  margin-top: 80px;
 }
 
 #volume {
   cursor: pointer;
   position: absolute;
   justify-content: flex-end;
-  margin-top: 3%;
+  margin-top: 50px;
   right: 28%;
   font-size: 48px;
   z-index: 1000;
@@ -117,30 +117,30 @@ a:last-child {
 
 #startscreen {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 34px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 600;
   position: absolute;
   justify-content: center;
-  width: 55%;
-  height: auto;
+  width: 50%;
+  height: 2500%;
   border: 3px solid whitesmoke;
   border-radius: 10px;
   background-color: #6899e4;
-  padding-bottom: 4%;
+  padding-bottom: 5%;
   margin-top: 13%;
   margin-left: 0%;
 }
 
 #button {
   cursor: pointer;
-  position: sticky;
+  position: relative;
   z-index: 1000;
   font-size: 30px;
   justify-content: center;
   align-items: flex-end;
-  margin-top: 0%;
+  margin-top: 1%;
   top: 100%;
-  right: 44%;
+  /* left: 44%; */
 }
 
 #button:hover {
@@ -161,7 +161,7 @@ button {
 #newgame {
   cursor: pointer;
   margin-top: 120%;
-  right: 200%;
+  right: 100px;
   width: 200px;
 }
 
