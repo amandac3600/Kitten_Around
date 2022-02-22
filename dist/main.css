@@ -24,14 +24,15 @@ body {
 
 .title {
   position: absolute;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: 55px;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
   font-weight: 900;
   font-size: 60px;
 }
 
 #instructions {
   position: absolute;
-  height: 36px;
+  height: 40px;
   width: 200px;
   font-size: 28px;
   font-weight: 700;
@@ -39,6 +40,9 @@ body {
   border-radius: 5px;
   left: 120px;
   margin-top: 80px;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 #volume {
@@ -46,7 +50,7 @@ body {
   position: absolute;
   justify-content: flex-end;
   margin-top: 50px;
-  right: 28%;
+  right: 26%;
   font-size: 48px;
   z-index: 1000;
 }
@@ -61,7 +65,7 @@ body {
   justify-content: flex-end;
   right: 50px;
   height: 36px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
   font-weight: 800;
   font-size: 28px;
 }
@@ -101,31 +105,34 @@ a:last-child {
 }
 
 .ggmessage, .winmessage {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
   font-size: 36px;
   font-weight: 700;
-  position: absolute;
+  position: relative;
   justify-content: center;
-  width: 500px;
-  height: 300px;
+  width: 480px;
+  height: 270px;
   border: 3px solid whitesmoke;
   border-radius: 10px;
   background-color: #658fdd;
-  top: 2000%;
-  left: 35%;
+  padding-top: 5%;
+  left: 3%;
+  z-index: 20;
+  top: 90%;
 }
 
 #startscreen {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
   font-size: 32px;
-  font-weight: 600;
+  font-weight: 700;
   position: absolute;
   justify-content: center;
   width: 50%;
-  height: 2500%;
+  height: 2300%;
   border: 3px solid whitesmoke;
   border-radius: 10px;
   background-color: #6899e4;
+  padding: 1%;
   padding-bottom: 5%;
   margin-top: 13%;
   margin-left: 0%;
@@ -140,6 +147,7 @@ a:last-child {
   align-items: flex-end;
   margin-top: 1%;
   top: 100%;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
   /* left: 44%; */
 }
 
@@ -161,14 +169,16 @@ button {
 #newgame {
   cursor: pointer;
   margin-top: 120%;
-  right: 100px;
+  right: 70px;
   width: 200px;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
 
 #new {
   cursor: pointer;
   position: relative;
   margin-top: 0%;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
 
 button:hover {
@@ -177,4 +187,5 @@ button:hover {
 
 #intro {
   padding-bottom: 20px;
+  margin-top: -1%;
 }
