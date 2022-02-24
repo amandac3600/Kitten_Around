@@ -357,7 +357,6 @@ window.onload = function() {
   }
 
   function displayGameOver() {
-    console.log("game over");
     createGameOver();
     let message = document.getElementById("gg");
     message.classList.add("enable");
