@@ -20,5 +20,4 @@ function Sound(src) {
   }
 }
 
-
 module.exports = Sound;

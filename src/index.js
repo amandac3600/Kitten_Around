@@ -40,6 +40,13 @@ window.onload = function() {
   mouseSound.sound.volume = 0.2;
   let eatingSound = new Sound("./sounds/eating.wav");
   eatingSound.sound.volume = 0.5;
+
+  if (localStorage.getItem("sound") === "muted") {
+    volume.className = "fas fa-volume-mute";
+  } else {
+    volume.className = "fas fa-volume-up";
+    document.body.addEventListener('click', playSoundOnInteraction, { once: true });
+  }
   
   function startGame () {
     gameLoop = setInterval(step, 30);  //30 fps
@@ -332,9 +339,18 @@ window.onload = function() {
     if (vol.className === "fas fa-volume-mute") {
       backgroundSound.play();
       vol.className = "fas fa-volume-up";
+      localStorage.setItem("sound", "unmuted");
     } else {
       backgroundSound.stop();
       vol.className = "fas fa-volume-mute";
+      localStorage.setItem("sound", "muted");
+    }
+  }
+
+  function playSoundOnInteraction() {
+    let vol = document.getElementById("volume");
+    if (vol.className === "fas fa-volume-up") {
+      backgroundSound.play();
     }
   }
 }

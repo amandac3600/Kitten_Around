@@ -68,7 +68,7 @@ function Player(x, y) {
       }
       if (upKey && this.y + this.height === borderRect.y + 5 && (this.x + this.width/2 + 16 > borderRect.x && this.x + this.width/2 - 16 < borderRect.x + borderRect.width)) {
         let vol = document.getElementById("volume");
-        if (vol.className === "fas fa-volume-up") {
+        if (vol.className === "fas fa-volume-unmuted") {
           jumpSound.play();
         } 
         framex = 1;
