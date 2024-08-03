@@ -29,35 +29,48 @@
 
 <body>
   <h1 class="title">Kitten' Around</h1>
-  <div id="startscreen">
-    <button id="button">Start!</button>
-  </div>
-  <button id="instructions" onclick="window.location.reload(true)">Instructions</button>
-  <div id="game-over"></div>
-  <div id="win-msg"></div>
-  <div class="buttons">
-    <ul>
-      <button id="newgame" onclick="window.location.reload(true)">New Game</button>
-    </ul>
+  <div class="top-buttons">
+    <button id="instructions" onclick="window.location.reload(true)">Instructions</button>
+    <button id="new-game" onclick="window.location.reload(true)">New Game</button>
   </div>
   <div class="volume">
     <ul id="vol" class="true">
       <i id="volume" class="fas fa-volume-mute" style="color: white"></i>
     </ul>
   </div>
-  <img type= "hidden" id="image" width="0" height="0" src="./images/woods.png">
-  <canvas width=1280 height=720 id="canvas"></canvas>
-</body>
-
-<nav class='background'>
-  <div class='socials'>
-      <ul>
-        <li><a href="https://github.com/amandac3600/Kitten_Around"><i class="fab fa-github-square" style="color: white"></i></a></li>
-        <li><a href="https://www.linkedin.com/in/amanda-chen-4b175a146"><i class="fab fa-linkedin" style="color: white"></i></a></li>
-      </ul>
+  <div class="canvas-container">
+    <div class="startscreen-container">
+      <div id="startscreen">
+        <h1>Help Bobo the cat eat the fish!</h3>
+        <h3>Instructions:</h4>
+        <ul>
+          <li>Use WASD or the arrow keys to move and jump.</li>
+          <li>Don't fall into the water or touch the mice.</li>
+          <li>Reach the fish at the end of the pond to win!</li>
+        </ul>
+        <button id="start-button">Start!</button>
+      </div>
+    </div>
+    <canvas width=1280 height=720 id="canvas"></canvas>
+    <div class="game-over"> 
+      <div id="game-over" class="game-over-messages" style="display: none">
+        <h5>You ruined Bobo's appetite.</h5>
+        <button id="new-game" onclick="window.location.reload(true)">Try Again</button>
+      </div>
+      <div id="win-msg" class="game-over-messages" style="display: none">
+        <h5>Yay! You fed Bobo!</h5>
+        <button id="new-game" onclick="window.location.reload(true)">New Game</button>
+      </div>
+    </div>
   </div>
-</nav>
-
+  <img type= "hidden" id="image" width="0" height="0" src="./images/woods.png">
+  <div class='socials'>
+    <ul>
+      <li class="social-link"><a href="https://github.com/amandac3600/Kitten_Around"><i class="fab fa-github-square" style="color: white"></i></a></li>
+      <li class="social-link"><a href="https://www.linkedin.com/in/amanda-chen-4b175a146"><i class="fab fa-linkedin" style="color: white"></i></a></li>
+    </ul>
+</div>
+</body>
 
 <div id="sounds">
   
