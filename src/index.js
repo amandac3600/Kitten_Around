@@ -6,22 +6,23 @@ const Sound = require("./sound.js");
 let gameLoop;
 
 window.onload = function() {
-  let startscreen = document.getElementById("startscreen");
-  let button = document.getElementById("button");
+  let startScreen = document.getElementById("startscreen");
+  let startButton = document.getElementById("start-button");
   function hide() {
-    startscreen.style.display = "none";
-    startscreen.setAttribute("id", "hidden");
-  }
-  //gameloop
-  button.addEventListener("click", hide);
-  button.addEventListener("click", startGame);
-
-  let hiddenstart = document.getElementById("hidden");
-  if (!hiddenstart) {
-    createstartScreen();
+    startScreen.style.display = "none";
+    startScreen.setAttribute("id", "hidden");
   }
 
-  //toggle mute and unmute
+  // game loop
+  startButton.addEventListener("click", hide);
+  startButton.addEventListener("click", startGame);
+
+  let hiddenStart = document.getElementById("hidden");
+  if (!hiddenStart) {
+    hideStartScreen();
+  }
+
+  // toggle mute and unmute
   let volume = document.getElementById("volume");
   volume.addEventListener("click", toggleSound);
   
@@ -31,7 +32,7 @@ window.onload = function() {
 
   let player = new Player(100, 300);
 
-  //sounds and music
+  // sounds and music
   let backgroundSound = new Sound("./sounds/background.mp3");
   let catSound = new Sound("./sounds/cat_pain.wav");
   let waterSound = new Sound("./sounds/water.wav");
@@ -74,7 +75,7 @@ window.onload = function() {
 
 
   let mice = [];
-  let mouse1 = new Mouse(550, 595);   //(x - 50, y, - 25)
+  let mouse1 = new Mouse(550, 595);   // (x - 50, y, - 25)
   let mouse2 = new Mouse(930, 395);
   let mouse3 = new Mouse(1570, 195);
   let mouse4 = new Mouse(2200, 515);
@@ -92,9 +93,9 @@ window.onload = function() {
 
   function draw() {
     ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);  //clear the canvas before redrawing
+    ctx.fillRect(0, 0, canvas.width, canvas.height);  // clear the canvas before redrawing
 
-    //draw background
+    // draw background
     ctx.drawImage(img, -1280, 0);
     ctx.drawImage(img, 0, 0);
     ctx.drawImage(img, 1280, 0);
@@ -123,10 +124,10 @@ window.onload = function() {
     fish.draw(ctx);
   }
 
-  function step() {  //main step function for things other than the player (like the mice)    
+  function step() {  // main step function for things other than the player (like the mice)    
     player.step();
 
-    //mouse movement
+    // mouse movement
     if (mouse1.x <= 10) {
       mouse1.xvel = 4;
     } else if (mouse1.x >= 530) {
@@ -176,7 +177,7 @@ window.onload = function() {
       width: player.width,
       height: player.height
     }
-    //vert collision rect
+    // vert collision rect
     let verticalRect = {
       x: player.x,
       y: player.y + player.yvel,
@@ -184,12 +185,11 @@ window.onload = function() {
       height: player.height
     }
 
-    draw();     //redraw canvas once everything has been updated
+    draw();     // redraw canvas once everything has been updated
 
     if (player.x < 0) {
       player.x = 0;
-    } 
-  
+    }
 
     borders.forEach (border => {
       let borderRect = {
@@ -198,13 +198,12 @@ window.onload = function() {
         width: border.width,
         height: border.height
       }
-      //check collision with logs
+      // check collision with logs
       if(checkCollision(horizontalRect, borderRect) && border.type === "log") {
         if (player.x + player.width > borderRect.x && player.y + player.height < borderRect.y) {
           player.x = player.x;
           player.yvel = 0;
         }
-        
       }
 
       if(checkCollision(verticalRect, borderRect) && border.type === "log") {
@@ -213,14 +212,14 @@ window.onload = function() {
           player.y = borderRect.y - player.height + 5;
           player.yvel = 0;
         } 
-        //right of log
+        // right of log
         if (player.y - player.height + 220 < borderRect.y && player.x + player.width - 80 < borderRect.x + borderRect.width && player.x + player.width / 2 > borderRect.x + borderRect.width / 2) {
           player.y = borderRect.y - player.height + 5;
           player.yvel = 0;
         } 
       }
 
-      //check collision with water
+      // check collision with water
       if(checkCollision(verticalRect, borderRect) && border.type === "water") {
         if (player.y + player.height - 10 > borderRect.y) {
           displayGameOver();
@@ -231,15 +230,10 @@ window.onload = function() {
             waterSound.sound.volume = 0.3;
             waterSound.play();
           }
-          // if (catSound.playing === true) {
-          //   catSound.play();
-          //   waterSound.sound.volume = 0.3;
-          //   waterSound.play();
-          // }
         } 
       } 
 
-      //check collision with fish
+      // check collision with fish
       if(checkCollision(horizontalRect, borderRect) && border.type === "fish") {
         if (player.x + player.width - 50 > borderRect.x && player.y + player.height + 20 < borderRect.y) {
           player.x = player.x;
@@ -249,12 +243,9 @@ window.onload = function() {
           if (vol.className === "fas fa-volume-up") {
             eatingSound.play();
           }
-          // if (catSound.playing === true) {
-          //   eatingSound.play();
-          // }
         }
-        
       }
+
       if(checkCollision(verticalRect, borderRect) && border.type === "fish") {
         if (player.y + player.height > borderRect.y && player.x + player.width - 50 > borderRect.x ) {
           gameOver();
@@ -263,14 +254,11 @@ window.onload = function() {
           if (vol.className === "fas fa-volume-up") {
             eatingSound.play();
           }
-          // if (catSound.playing === true) {
-          //   eatingSound.play();
-          // }
         } 
       }  
     });
 
-    //check collision with mice
+    // check collision with mice
     mice.forEach (mouse => {
       let mouseRect = {
         x: mouse.x,
@@ -278,9 +266,8 @@ window.onload = function() {
         width: mouse.width,
         height: mouse.height
       }
-      // && player.y + player.height + 20 < mouseRect.y
 
-      //mouse on right of cat
+      // mouse on right of cat
       if(checkCollision(horizontalRect, mouseRect) && mouse.x > horizontalRect.x) {
         if (player.x + 70 > mouseRect.x ) {
           displayGameOver();
@@ -290,11 +277,8 @@ window.onload = function() {
             catSound.play();
             mouseSound.play();
           }
-          // if (catSound.playing === true) {
-          //   catSound.play();
-          //   mouseSound.play();
-          // }
         }
+
       // mouse on left of cat
         if (player.x < mouseRect.x && mouse.x + mouse.width < horizontalRect.x) {
           displayGameOver();
@@ -304,13 +288,8 @@ window.onload = function() {
             catSound.play();
             mouseSound.play();
           }
-          // if (catSound.playing === true) {
-          //   catSound.play();
-          //   mouseSound.play();
-          // }
         }
       }
-      
     });
   }
 
@@ -333,68 +312,30 @@ window.onload = function() {
     clearInterval(gameLoop);
   }
 
-  function createstartScreen() {
-    let startScreen = document.getElementById('startscreen');
-    let text = document.createElement('p');
-    startScreen.appendChild(text);
-    text.innerHTML = 'Help Bobo the cat get to the fish at the end of the pond! But be careful, the journey to her favorite food is filled with her enemies- water and mice! <br /> <br /> Use WASD or the arrow keys to move and jump. Avoid touching the water and mice! \n ';
-    text.setAttribute("id", "intro");
-  }
-
-  function createGameOver() {
-    let gameOverMessage = document.createElement('form');
-    let text = document.createElement('p');
-    let button = document.createElement('button');
-    let gg = document.getElementById("game-over");
-    gg.appendChild(gameOverMessage);
-    gameOverMessage.appendChild(text);
-    gameOverMessage.appendChild(button);
-    gameOverMessage.classList.add("ggmessage");
-    gameOverMessage.setAttribute("id", "gg");
-    text.innerHTML = 'You ruined Bobo\'s appetite';
-    button.innerText = 'New Game';
-    button.setAttribute("id", "new");
+  function hideStartScreen() {
+    // let startScreen = document.getElementById('startscreen');
+    // startScreen.style.display = "none";
   }
 
   function displayGameOver() {
-    createGameOver();
-    let message = document.getElementById("gg");
-    message.classList.add("enable");
-  }
-
-  function createVictoryMsg() {
-    let victoryMsg = document.createElement('form');
-    let text = document.createElement('p');
-    let button = document.createElement('button');
-    let win = document.getElementById("win-msg");
-    win.appendChild(victoryMsg);
-    victoryMsg.appendChild(text);
-    victoryMsg.appendChild(button);
-    victoryMsg.classList.add("winmessage");
-    victoryMsg.setAttribute("id", "win");
-    text.innerHTML = 'Yay! You fed Bobo!';
-    button.innerText = 'New Game';
-    button.setAttribute("id", "new");
+    let message = document.getElementById("game-over");
+    message.style.display = "flex";
   }
 
   function displayVictoryMsg() {
-    createVictoryMsg();
-    let message = document.getElementById("win");
-    message.classList.add("enable");
+    let message = document.getElementById("win-msg");
+    message.style.display = "flex";
   }
 
   function toggleSound () {
     let vol = document.getElementById("volume");
     if (vol.className === "fas fa-volume-mute") {
       backgroundSound.play();
-      // catSound.playing = true;
       vol.className = "fas fa-volume-up";
     } else {
       backgroundSound.stop();
-      // catSound.playing = false;
       vol.className = "fas fa-volume-mute";
     }
   }
-  
 }
 
